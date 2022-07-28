@@ -1,2 +1,2 @@
-# Bwaken-Studio
-An unusual Minecraft launcher
+# BadMcen Studio Lightweight
+An abnormal launcher
