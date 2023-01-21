@@ -1,2 +1,2 @@
-# BadMcen Studio Lightweight
+# BadMcen Launcher
 An abnormal launcher
