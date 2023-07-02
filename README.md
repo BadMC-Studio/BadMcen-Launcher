@@ -1,2 +1,3 @@
 # BadMcen Launcher
-An abnormal launcher
+正在开发的启动器……
+目前开发进度：0.7%
