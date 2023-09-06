@@ -11,6 +11,61 @@
     <UseWinUI>true</UseWinUI>
     <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Remove="Assets\Logos\LargeTile.scale-100.png" />
+    <Content Remove="Assets\Logos\LargeTile.scale-125.png" />
+    <Content Remove="Assets\Logos\LargeTile.scale-150.png" />
+    <Content Remove="Assets\Logos\LargeTile.scale-200.png" />
+    <Content Remove="Assets\Logos\LargeTile.scale-400.png" />
+    <Content Remove="Assets\Logos\SmallTile.scale-100.png" />
+    <Content Remove="Assets\Logos\SmallTile.scale-125.png" />
+    <Content Remove="Assets\Logos\SmallTile.scale-150.png" />
+    <Content Remove="Assets\Logos\SmallTile.scale-200.png" />
+    <Content Remove="Assets\Logos\SmallTile.scale-400.png" />
+    <Content Remove="Assets\Logos\SplashScreen.scale-100.png" />
+    <Content Remove="Assets\Logos\SplashScreen.scale-125.png" />
+    <Content Remove="Assets\Logos\SplashScreen.scale-150.png" />
+    <Content Remove="Assets\Logos\SplashScreen.scale-200.png" />
+    <Content Remove="Assets\Logos\SplashScreen.scale-400.png" />
+    <Content Remove="Assets\Logos\Square150x150Logo.scale-100.png" />
+    <Content Remove="Assets\Logos\Square150x150Logo.scale-125.png" />
+    <Content Remove="Assets\Logos\Square150x150Logo.scale-150.png" />
+    <Content Remove="Assets\Logos\Square150x150Logo.scale-200.png" />
+    <Content Remove="Assets\Logos\Square150x150Logo.scale-400.png" />
+    <Content Remove="Assets\Logos\Square44x44Logo.altform-lightunplated_targetsize-16.png" />
+    <Content Remove="Assets\Logos\Square44x44Logo.altform-lightunplated_targetsize-24.png" />
+    <Content Remove="Assets\Logos\Square44x44Logo.altform-lightunplated_targetsize-256.png" />
+    <Content Remove="Assets\Logos\Square44x44Logo.altform-lightunplated_targetsize-32.png" />
+    <Content Remove="Assets\Logos\Square44x44Logo.altform-lightunplated_targetsize-48.png" />
+    <Content Remove="Assets\Logos\Square44x44Logo.altform-unplated_targetsize-16.png" />
+    <Content Remove="Assets\Logos\Square44x44Logo.altform-unplated_targetsize-24.png" />
+    <Content Remove="Assets\Logos\Square44x44Logo.altform-unplated_targetsize-256.png" />
+    <Content Remove="Assets\Logos\Square44x44Logo.altform-unplated_targetsize-32.png" />
+    <Content Remove="Assets\Logos\Square44x44Logo.altform-unplated_targetsize-48.png" />
+    <Content Remove="Assets\Logos\Square44x44Logo.scale-100.png" />
+    <Content Remove="Assets\Logos\Square44x44Logo.scale-125.png" />
+    <Content Remove="Assets\Logos\Square44x44Logo.scale-150.png" />
+    <Content Remove="Assets\Logos\Square44x44Logo.scale-200.png" />
+    <Content Remove="Assets\Logos\Square44x44Logo.scale-400.png" />
+    <Content Remove="Assets\Logos\Square44x44Logo.targetsize-16.png" />
+    <Content Remove="Assets\Logos\Square44x44Logo.targetsize-24.png" />
+    <Content Remove="Assets\Logos\Square44x44Logo.targetsize-256.png" />
+    <Content Remove="Assets\Logos\Square44x44Logo.targetsize-32.png" />
+    <Content Remove="Assets\Logos\Square44x44Logo.targetsize-48.png" />
+    <Content Remove="Assets\Logos\StoreLogo.scale-100.png" />
+    <Content Remove="Assets\Logos\StoreLogo.scale-125.png" />
+    <Content Remove="Assets\Logos\StoreLogo.scale-150.png" />
+    <Content Remove="Assets\Logos\StoreLogo.scale-200.png" />
+    <Content Remove="Assets\Logos\StoreLogo.scale-400.png" />
+    <Content Remove="Assets\Logos\Wide310x150Logo.scale-100.png" />
+    <Content Remove="Assets\Logos\Wide310x150Logo.scale-125.png" />
+    <Content Remove="Assets\Logos\Wide310x150Logo.scale-150.png" />
+    <Content Remove="Assets\Logos\Wide310x150Logo.scale-200.png" />
+    <Content Remove="Assets\Logos\Wide310x150Logo.scale-400.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Views\MainPage.xaml" />
+  </ItemGroup>
 
   <ItemGroup>
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -23,8 +78,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.3.230602002" />
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
+    <PackageReference Include="CommunityToolkit.Labs.WinUI.SettingsControls" Version="0.0.18" />
+    <PackageReference Include="CommunityToolkit.WinUI" Version="7.1.2" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.4.230822000" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.25936-preview" />
+    <PackageReference Include="MinecraftLaunch" Version="1.9.6-preview6" />
+    <PackageReference Include="MinecraftLaunch.Skin" Version="1.0.0" />
+    <PackageReference Include="MinecraftOAuth" Version="1.9.6-preview4" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
 
@@ -34,7 +94,12 @@
     package has not yet been restored.
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
-    <ProjectCapability Include="Msix"/>
+    <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <!-- 
