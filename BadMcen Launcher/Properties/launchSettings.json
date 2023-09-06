@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "BadMcen Launcher (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "BadMcen Launcher (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
