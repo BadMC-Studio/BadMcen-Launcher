@@ -16,7 +16,6 @@ using BadMcen_Launcher.Models.Create;
 using Microsoft.UI.Xaml.Media.Imaging;
 using BadMcen_Launcher.Views.Home;
 using BadMcen_Launcher.Views.SetVersion;
-using BadMcen_Launcher.Models.Theme;
 using Microsoft.UI.Xaml.Media.Animation;
 
 // To learn more about WinUI, the WinUI project structure,

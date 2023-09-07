@@ -8,16 +8,16 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="BadMC-BadMcenLauncher-2023-0-01"
+    Name="BadMC-BadMcenLauncher"
     Publisher="CN=BadMC"
     Version="0.0.1.0" />
 
-  <mp:PhoneIdentity PhoneProductId="b7660aa8-3149-4212-949f-c6e9d40b0859" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="0a736e29-e435-45fe-8801-bc88ae9f729a" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>BadMcen Launcher</DisplayName>
     <PublisherDisplayName>BadMC</PublisherDisplayName>
-    <Logo>Images\StoreLogo.png</Logo>
+    <Logo>Assets\Logos\StoreLogo.png</Logo>
   </Properties>
 
   <Dependencies>
@@ -35,14 +35,14 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="BadMcen Launcher (Package)"
-        Description="BadMcen Launcher (Package)"
+        DisplayName="BadMcen Launcher"
+        Description="BadMcen Launcher"
         BackgroundColor="transparent"
-        Square150x150Logo="Images\Square150x150Logo.png"
-        Square44x44Logo="Images\Square44x44Logo.png">
-        <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png"  Square71x71Logo="Images\SmallTile.png" Square310x310Logo="Images\LargeTile.png"/>
-        <uap:SplashScreen Image="Images\SplashScreen.png" />
-        <uap:LockScreen Notification="badge" BadgeLogo="Images\BadgeLogo.png"/>
+        Square150x150Logo="Assets\Logos\Square150x150Logo.png"
+        Square44x44Logo="Assets\Logos\Square44x44Logo.png">
+        <uap:DefaultTile Wide310x150Logo="Assets\Logos\Wide310x150Logo.png"  Square71x71Logo="Assets\Logos\SmallTile.png" Square310x310Logo="Assets\Logos\LargeTile.png"/>
+        <uap:SplashScreen Image="Assets\Logos\SplashScreen.png" />
+        <uap:LockScreen Notification="badge" BadgeLogo="Assets\Logos\BadgeLogo.png"/>
       </uap:VisualElements>
     </Application>
   </Applications>
