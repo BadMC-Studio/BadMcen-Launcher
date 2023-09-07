@@ -1,6 +1,4 @@
-﻿using Microsoft.UI;
-using Microsoft.UI.Windowing;
-using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -17,7 +15,6 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
-using WinRT.Interop;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -44,21 +41,10 @@ namespace BadMcen_Launcher
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            MainWindow = new MainWindow();
-            _windowHandle = WindowNative.GetWindowHandle(MainWindow);
-            var windowId = Win32Interop.GetWindowIdFromWindow(_windowHandle);
-            AppWindow = AppWindow.GetFromWindowId(windowId);
-            AppWindow.TitleBar.ExtendsContentIntoTitleBar = true;
-            MainWindow.Activate();
-            AppWindow.TitleBar.ButtonBackgroundColor = Colors.Transparent;
-            AppWindow.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
-
+            m_window = new MainWindow();
+            m_window.Activate();
         }
-        private IntPtr _windowHandle;
 
-
-        public static AppWindow AppWindow { get; private set; }
-
-        public static Window MainWindow { get; private set; }
+        private Window m_window;
     }
 }
