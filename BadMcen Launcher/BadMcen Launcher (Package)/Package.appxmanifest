@@ -8,15 +8,15 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="b7660aa8-3149-4212-949f-c6e9d40b0859"
-    Publisher="CN=Starcloudsea"
-    Version="1.0.0.0" />
+    Name="BadMC-BadMcenLauncher-2023-0-01"
+    Publisher="CN=BadMC"
+    Version="0.0.1.0" />
 
   <mp:PhoneIdentity PhoneProductId="b7660aa8-3149-4212-949f-c6e9d40b0859" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>BadMcen Launcher (Package)</DisplayName>
-    <PublisherDisplayName>Starcloudsea</PublisherDisplayName>
+    <DisplayName>BadMcen Launcher</DisplayName>
+    <PublisherDisplayName>BadMC</PublisherDisplayName>
     <Logo>Images\StoreLogo.png</Logo>
   </Properties>
 
@@ -26,7 +26,8 @@
   </Dependencies>
 
   <Resources>
-    <Resource Language="x-generate"/>
+    <Resource Language="zh-CN"/>
+	<Resource Language="en-US"/>
   </Resources>
 
   <Applications>
@@ -39,8 +40,9 @@
         BackgroundColor="transparent"
         Square150x150Logo="Images\Square150x150Logo.png"
         Square44x44Logo="Images\Square44x44Logo.png">
-        <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png" />
+        <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png"  Square71x71Logo="Images\SmallTile.png" Square310x310Logo="Images\LargeTile.png"/>
         <uap:SplashScreen Image="Images\SplashScreen.png" />
+        <uap:LockScreen Notification="badge" BadgeLogo="Images\BadgeLogo.png"/>
       </uap:VisualElements>
     </Application>
   </Applications>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="BadMcen_Launcher.Views.Home.Settings.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BadMcen_Launcher.Views.Home.Settings"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <NavigationView SelectionChanged="SettingsView_SelectionChanged" BackRequested="MainPageView_BackRequested" IsBackEnabled="True" IsSettingsVisible="False" PaneTitle="设置" x:Uid="SettingsPage_MenuItems0">
+            <NavigationView.MenuItems>
+                <NavigationViewItemHeader Content="游戏设置" x:Uid="SettingsPage_MenuItems1"/>
+                <NavigationViewItem Content="常规" x:Uid="SettingsPage_MenuItems2" Tag="RoutineTag" IsSelected="True">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xF133;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+            </NavigationView.MenuItems>
+            <Frame x:Name="SettingsFrame"/>
+        </NavigationView>
+    </Grid>
+</Page>
