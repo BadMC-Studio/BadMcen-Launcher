@@ -35,6 +35,12 @@
             <TextBlock VerticalAlignment="Center" Margin="85,0,0,0" Text="BadMcen Launcher" FontWeight="Bold" />
         </Grid>
         <!--View-->
-        <Frame x:Name="MainFrame" x:FieldModifier="public" Grid.Row="1"/>
+        <Frame x:Name="MainFrame" x:FieldModifier="public" Grid.Row="1">
+            <Frame.ContentTransitions>
+                <TransitionCollection>
+                    <NavigationThemeTransition/>
+                </TransitionCollection>
+            </Frame.ContentTransitions>
+        </Frame>
     </Grid>
 </Window>

@@ -17,6 +17,7 @@ using Microsoft.UI.Xaml.Media.Imaging;
 using BadMcen_Launcher.Views.Home;
 using BadMcen_Launcher.Views.SetVersion;
 using BadMcen_Launcher.Models.Theme;
+using Microsoft.UI.Xaml.Media.Animation;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -48,7 +49,7 @@ namespace BadMcen_Launcher.Views
         {
             if (MainFrame.Content == null || MainFrame.Content.GetType() == typeof(SetVersionPage))
             {
-                MainFrame.Navigate(typeof(HomePage));
+                MainFrame.Navigate(typeof(HomePage), null);
             }
             else if (MainFrame.Content.GetType() == typeof(HomePage))
             {
@@ -60,7 +61,7 @@ namespace BadMcen_Launcher.Views
         {
             if (MainFrame.Content == null || MainFrame.Content.GetType() == typeof(HomePage))
             {
-                MainFrame.Navigate(typeof(SetVersionPage));
+                MainFrame.Navigate(typeof(SetVersionPage), null);
             }
             else if (MainFrame.Content.GetType() == typeof(SetVersionPage))
             {

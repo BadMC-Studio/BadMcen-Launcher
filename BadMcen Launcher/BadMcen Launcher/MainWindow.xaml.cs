@@ -58,10 +58,10 @@ namespace BadMcen_Launcher
             //Set the window drag area
             AppWindow.TitleBar.SetDragRectangles(new RectInt32[] { new RectInt32(80, 0, ScreenWidth - 80, 40) });
         }
-
+        //SetWallpaper
         public void SetWallpaper()
         {
-
+            1
             PathCode pathCode = new PathCode();
             string folders = System.IO.Path.Combine(pathCode.FolderPath, @"BadMC\BadMcen Launcher\Wallpaper");
             string[] files = Directory.GetFiles(folders, "*.png");

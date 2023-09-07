@@ -17,7 +17,13 @@
                 <RowDefinition Height="70"/>
             </Grid.RowDefinitions>
             <!--MainView-->
-            <Frame Grid.Column="0" Grid.Row="0" x:Name="MainFrame"/>
+            <Frame Grid.Column="0" Grid.Row="0" x:Name="MainFrame">
+            <Frame.ContentTransitions>
+                <TransitionCollection>
+                    <NavigationThemeTransition/>
+                </TransitionCollection>
+            </Frame.ContentTransitions>
+        </Frame>
             <!--Right column-->
             <Grid Grid.Row="0" Grid.Column="1" Background="{ThemeResource SolidBackgroundFillColorBaseBrush}">
                 

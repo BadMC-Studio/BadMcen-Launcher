@@ -5,6 +5,7 @@ using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,7 @@ namespace BadMcen_Launcher.Views.Home
         //Navigate to SettingsPage
         private void Setting_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.Instance.MainFrame.Navigate(typeof(SettingsPage));
+            MainWindow.Instance.MainFrame.Navigate(typeof(SettingsPage), null, new DrillInNavigationTransitionInfo());
         }
     }
 }
