@@ -1,3 +1,4 @@
+using BadMcen_Launcher.Views.SetVersion;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -27,5 +28,22 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
         {
             this.InitializeComponent();
         }
+        
+        //Set version path info
+        private void SetVersionPathHelpClick(object sender, RoutedEventArgs e)
+        {
+            SetVersionPathHelp.IsOpen = true;
+        }
+        //Isolation of versions info
+        private void InfoClick1(object sender, RoutedEventArgs e)
+        {
+            RoutineInfo1.IsOpen = true;
+        }
+        //Set java path info
+        private void InfoClick2(object sender, RoutedEventArgs e)
+        {
+            RoutineInfo2.IsOpen = true;
+        }
+
     }
 }

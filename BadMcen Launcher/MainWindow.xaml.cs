@@ -35,8 +35,8 @@ namespace BadMcen_Launcher
 
         public MainWindow()
         {
-            InvokeExternalCode();
             SetWindow();
+            InvokeExternalCode();
             this.InitializeComponent();
             SetWallpaper();
             Instance = this;
@@ -47,14 +47,15 @@ namespace BadMcen_Launcher
         public void SetWindow()
         {
             m_appWindow = GetAppWindowForCurrentWindow();
+            //Set Window Screen Height and Screen Width
             var ScreenHeight = DisplayArea.Primary.WorkArea.Height;
             var ScreenWidth = DisplayArea.Primary.WorkArea.Width;
+            //Set the window drag area
+            AppWindow.TitleBar.SetDragRectangles(new RectInt32[]{new RectInt32(800, 0, ScreenWidth - 80, 40)});
             //Set the window width and height and the position of the screen.
             m_appWindow.MoveAndResize(new RectInt32(ScreenWidth - ScreenWidth / 2 - 1100 / 2, (int)(ScreenHeight - ScreenHeight / 2 - 650 / 2), 1100, 650));
             //Set TitleBar title
             m_appWindow.Title = "BadMcen Launcher";
-            //Set the window drag area
-            AppWindow.TitleBar.SetDragRectangles(new RectInt32[] { new RectInt32(80, 0, ScreenWidth - 80, 40) });
         }
         //SetWallpaper
         public void SetWallpaper()

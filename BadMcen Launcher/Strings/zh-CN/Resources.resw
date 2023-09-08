@@ -123,6 +123,33 @@
   <data name="MainPage_LaunchButton.Text" xml:space="preserve">
     <value>启动Minecraft！</value>
   </data>
+  <data name="RoutinePage_ExpanderSetVersionPathHeader.Header" xml:space="preserve">
+    <value>.minecraft 文件夹路径</value>
+  </data>
+  <data name="RoutinePage_ExpanderSetVersionPathHelp01.Subtitle" xml:space="preserve">
+    <value>.minecraft文件夹储存着你的游戏资源,包括光影，地图，Mod等</value>
+  </data>
+  <data name="RoutinePage_ExpanderSetVersionPathHelp01.Title" xml:space="preserve">
+    <value>设置.minecraft文件夹路径.</value>
+  </data>
+  <data name="RoutinePage_ExpanderSetVersionPathHelp02.Content" xml:space="preserve">
+    <value>了解更多</value>
+  </data>
+  <data name="RoutinePage_ExpanderSetVersionPathHelp02.NavigateUri" xml:space="preserve">
+    <value>https://minecraft.fandom.com/zh/wiki/.minecraft</value>
+  </data>
+  <data name="RoutinePage_ExpanderSetVersionSettingsHeader.Description" xml:space="preserve">
+    <value>设置.minecraft路径，版本隔离.</value>
+  </data>
+  <data name="RoutinePage_ExpanderSetVersionSettingsHeader.Header" xml:space="preserve">
+    <value>Minecraft 版本</value>
+  </data>
+  <data name="RoutinePage_ExpanderVersionIsolationHeader.Header" xml:space="preserve">
+    <value>版本隔离</value>
+  </data>
+  <data name="RoutinePage_Header.Text" xml:space="preserve">
+    <value>常规</value>
+  </data>
   <data name="SettingsPage_MenuItems1.Content" xml:space="preserve">
     <value>游戏设置</value>
   </data>

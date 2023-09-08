@@ -5,11 +5,159 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:animatedvisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals" xmlns:labs="using:CommunityToolkit.Labs.WinUI"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
+        <!--Header-->
+        <FontIcon HorizontalAlignment="Left" Margin="30,20" Glyph="&#xF133;" FontSize="25"/>
+        <TextBlock Grid.Row="0" Text="常规" x:Uid="RoutinePage_Header" HorizontalAlignment="Left" FontSize="25" Margin="70,20" />
+        <!--Settings-->
+        <ScrollViewer Grid.Row="1" Margin="10,10,0,0">
+            <StackPanel>
+                <!--SetVersionPath-->
+                <labs:SettingsExpander Grid.Row="1" Margin="20,20,20,20" x:Uid="RoutinePage_ExpanderSetVersionSettingsHeader">
+                    <labs:SettingsExpander.HeaderIcon>
+                        <FontIcon Glyph="&#xE8b7;" />
+                    </labs:SettingsExpander.HeaderIcon>
+                    <labs:SettingsExpander.Items>
+                        <labs:SettingsCard x:Uid="RoutinePage_ExpanderSetVersionPathHeader">
+                            <Grid>
+                                <!--SetVersionPathHelpButton-->
+                                <Button HorizontalAlignment="Right" BorderBrush="Transparent" Background="Transparent" BorderThickness="0" x:Name="SetVersionPathHelpButton" Click="SetVersionPathHelpClick">
+                                    <FontIcon Glyph="&#xE9CE;" FontSize="20" Foreground="{ThemeResource AccentFillColorSecondaryBrush}"/>
+                                </Button>
+                                <!--SetVersionPathHelpTeachingTip-->
+                                <TeachingTip x:Name="SetVersionPathHelp" Target="{x:Bind SetVersionPathHelpButton}" x:Uid="RoutinePage_ExpanderSetVersionPathHelp01">
+                                    <TeachingTip.Content>
+                                        <HyperlinkButton Content="了解更多" NavigateUri="https://minecraft.fandom.com/zh/wiki/.minecraft" x:Uid="RoutinePage_ExpanderSetVersionPathHelp02"/>
+                                    </TeachingTip.Content>
+                                </TeachingTip>
+                                <!--SetVersionPathButton-->
+                                <HyperlinkButton Height="30" Width="300" Margin="50,0"/>
+                            </Grid>
+                        </labs:SettingsCard>
+                        <!--VersionIsolation-->
+                        <labs:SettingsCard x:Uid="RoutinePage_ExpanderVersionIsolationHeader">
+                            <Grid>
+                                <Button HorizontalAlignment="Right" BorderBrush="Transparent" Background="Transparent" Click="InfoClick1" x:Name="InfoButton1" >
+                                    <FontIcon Glyph="&#xE9CE;" FontSize="20" Foreground="{ThemeResource AccentFillColorSecondaryBrush}"/>
+                                </Button>
+                                <TeachingTip x:Name="RoutineInfo1" Target="{x:Bind InfoButton1}" Title="设置是否开启版本隔离." Subtitle="版本隔离是指各个版本的存档、资源包、Mod等文件分离存放,这样就不会导致Mod混乱或者误操作打开了错误版本的存档" x:Uid="RoutinePage_Expander07">
+                                    <TeachingTip.Content>
+                                        <HyperlinkButton Content="了解更多" NavigateUri="https://www.zhihu.com/question/529802349" x:Uid="RoutinePage_Expander08"/>
+                                    </TeachingTip.Content>
+                                </TeachingTip>
+                                <ToggleSwitch Margin="50,0" OffContent="关" OnContent="开" x:Name="IndependencyCore" x:Uid="RoutinePage_Expander09"/>
+                            </Grid>
+                        </labs:SettingsCard>
+                    </labs:SettingsExpander.Items>
+                </labs:SettingsExpander>
+                <Expander Grid.Row="1" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="20,20,20,20"  Width="Auto" Padding="0" VerticalContentAlignment="stretch">
+
+
+                    <Expander.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <FontIcon Margin="2,0,0,0" Glyph="&#xE8b7;" />
+                            <StackPanel Margin="17,12.5">
+                                <TextBlock Text="Minecraft 资源文件夹" x:Uid="RoutinePage_Expander01"/>
+                                <TextBlock Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}" Text="储存你的游戏核心，资源"  x:Uid="RoutinePage_Expander02"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Expander.Header>
+                    <Expander.Content >
+                        <Grid>
+                            <TextBlock Margin="20,20" Text="Minecraft文件夹路径" x:Uid="RoutinePage_Expander03"  VerticalAlignment="Top" />
+                           
+                            <Button Margin="20,15" VerticalAlignment="Top" HorizontalAlignment="Right" Height="30" Width="400" BorderThickness="0,0,0,0" x:Name="SetVersionButton" x:FieldModifier="public"/>
+                            <TextBlock Text="版本隔离"  Margin="20,60" x:Uid="RoutinePage_Expander06"/>
+
+                            <Button Margin="80,55" VerticalAlignment="Top" BorderBrush="Transparent" Background="Transparent" Click="InfoClick1" >
+                                <FontIcon Glyph="&#xE9CE;" FontSize="20" Foreground="{ThemeResource AccentFillColorSecondaryBrush}"/>
+                            </Button>
+                            <TeachingTip Target="{x:Bind InfoButton1}" Title="设置是否开启版本隔离." Subtitle="版本隔离是指各个版本的存档、资源包、Mod等文件分离存放,这样就不会导致Mod混乱或者误操作打开了错误版本的存档" x:Uid="RoutinePage_Expander07">
+                                <TeachingTip.HeroContent>
+                                    <Image Source="/Assets/SampleMedia/OIG.png" AutomationProperties.Name="OIG" />
+                                </TeachingTip.HeroContent>
+                                <TeachingTip.Content>
+                                    <HyperlinkButton Content="了解更多" NavigateUri="https://www.zhihu.com/question/529802349" x:Uid="RoutinePage_Expander08"/>
+                                </TeachingTip.Content>
+                            </TeachingTip>
+                            <ToggleSwitch Margin="0,50" VerticalAlignment="Top" HorizontalAlignment="Right" OffContent="关" OnContent="开" x:Uid="RoutinePage_Expander09"/>
+                        </Grid>
+                    </Expander.Content>
+
+                </Expander>
+                <!--Java-->
+                <Expander Grid.Row="1" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="20,20,20,20"  Width="Auto" Padding="0" VerticalContentAlignment="stretch">
+
+                    <Expander.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <FontIcon Margin="2,0,0,0" Glyph="&#xE8b7;" />
+                            <StackPanel Margin="17,12.5">
+                                <TextBlock Text="Java设置" />
+                                <TextBlock Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}" Text="管理Java虚拟机路径和内存." />
+                            </StackPanel>
+                        </StackPanel>
+                    </Expander.Header>
+                    <Expander.Content >
+                        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Grid Height="500">
+                                <TextBlock Margin="20,20" Text="Java运行时路径" VerticalAlignment="Top" />
+                                <Button Margin="150,13" BorderBrush="Transparent" Background="Transparent" VerticalAlignment="Top" x:Name="InfoButton2" Click="InfoClick2">
+                                    <FontIcon Glyph="&#xE9CE;" FontSize="20" Foreground="{ThemeResource AccentFillColorSecondaryBrush}"/>
+                                </Button>
+                                <TeachingTip x:Name="RoutineInfo2" Target="{x:Bind InfoButton2}" Title="这是你的Java运行时路径." Subtitle="由于Minecraft Java版需要Java启动，所以你必须选择一个Java才能继续.">
+                                    <TeachingTip.HeroContent>
+                                        <Image Source="/Assets/SampleMedia/OIG.png" AutomationProperties.Name="OIG" />
+                                    </TeachingTip.HeroContent>
+                                    <TeachingTip.Content>
+                                        <TextBlock TextWrapping="WrapWholeWords" Margin="0,16,0,0">Java 8是Jre，适合启动1.16版本及以下，而Java 16及以上是JDK，适合启动1.17版本及以上.你可以点击这个链接来 <Hyperlink NavigateUri="https://www.bilibili.com/read/cv11285851/">了解更多</Hyperlink>.</TextBlock>
+                                    </TeachingTip.Content>
+                                </TeachingTip>
+                                <Button HorizontalAlignment="Right" Height="30" Width="100" Margin="0,15,20,0" VerticalAlignment="Top" >
+                                    <StackPanel Orientation="Horizontal">
+                                        <FontIcon FontSize="16" Glyph="&#xe838;" />
+                                        <TextBlock Margin="5,0,0,0" Text="选取" />
+                                    </StackPanel>
+                                </Button>
+                                <Button HorizontalAlignment="Right" Height="30" Width="100" Margin="0,15,130,0" VerticalAlignment="Top" >
+                                    <StackPanel Orientation="Horizontal">
+                                        <AnimatedIcon x:Name="earchAnimatedIcon" Height="21.5">
+                                            <AnimatedIcon.Source>
+                                                <animatedvisuals:AnimatedFindVisualSource/>
+                                            </AnimatedIcon.Source>
+                                            <AnimatedIcon.FallbackIconSource>
+                                                <SymbolIconSource Symbol="Find"/>
+                                            </AnimatedIcon.FallbackIconSource>
+                                        </AnimatedIcon>
+                                        <TextBlock
+                                     Margin="5,0,0,0"
+                                     Text="搜索" />
+
+                                    </StackPanel>
+                                </Button>
+                                <Button HorizontalAlignment="Right" Height="30" Width="100" Margin="0,15,240,0" VerticalAlignment="Top" x:Name="GetJavaButton">
+                                    <StackPanel Orientation="Horizontal">
+                                        <FontIcon FontSize="16" Glyph="&#xE896;" />
+                                        <TextBlock
+                                     Margin="5,0,0,0"
+                                     Text="获取Java" />
+                                    </StackPanel>
+                                </Button>
+                            </Grid>
+                        </StackPanel>
+                    </Expander.Content>
+                </Expander>
+            </StackPanel>
+        </ScrollViewer>
+        <InfoBar x:Name="VersionErrorInfo" x:FieldModifier="public" Grid.Row="1" VerticalAlignment="Bottom" Margin="10,10" IsOpen="False" Severity="Error" Title="啊这......"/>
     </Grid>
 </Page>
