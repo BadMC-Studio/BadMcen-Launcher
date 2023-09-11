@@ -147,6 +147,21 @@
   <data name="RoutinePage_ExpanderVersionIsolationHeader.Header" xml:space="preserve">
     <value>版本隔离</value>
   </data>
+  <data name="RoutinePage_ExpanderVersionIsolationHelp01.Subtitle" xml:space="preserve">
+    <value>不同版本的游戏会使用不同版本的资源，因此需要把资源隔离存放和使用，以免发生问题.</value>
+  </data>
+  <data name="RoutinePage_ExpanderVersionIsolationHelp01.Title" xml:space="preserve">
+    <value>将游戏资源隔离存放.</value>
+  </data>
+  <data name="RoutinePage_ExpanderVersionIsolationHelp02.Content" xml:space="preserve">
+    <value>了解更多</value>
+  </data>
+  <data name="RoutinePage_ExpanderVersionIsolationToggleSwitch.OffContent" xml:space="preserve">
+    <value>关</value>
+  </data>
+  <data name="RoutinePage_ExpanderVersionIsolationToggleSwitch.OnContent" xml:space="preserve">
+    <value>开</value>
+  </data>
   <data name="RoutinePage_Header.Text" xml:space="preserve">
     <value>常规</value>
   </data>
