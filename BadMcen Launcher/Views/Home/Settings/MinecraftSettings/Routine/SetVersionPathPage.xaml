@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine.SetVersionPathPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:animatedvisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    
+    <Grid>
+        <!--.minecraftPathPicker-->
+        <Button HorizontalAlignment="Right" Height="40" Width="40" Margin="0,15,20,0" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Click="SetVersionPathPicker">
+            <FontIcon FontSize="16" Glyph="&#xe838;" />
+        </Button>
+        <!--SearchVersion-->
+        <Button HorizontalAlignment="Right" Height="40" Width="40" Margin="0,15,60,0" VerticalAlignment="Top" Background="Transparent" BorderBrush="{x:Null}" BorderThickness="0">
+            <AnimatedIcon x:Name="SearchAnimatedIcon" Width="20" Height="20">
+                <AnimatedIcon.Source>
+                    <animatedvisuals:AnimatedFindVisualSource/>
+                </AnimatedIcon.Source>
+                <AnimatedIcon.FallbackIconSource>
+                    <SymbolIconSource Symbol="Find"/>
+                </AnimatedIcon.FallbackIconSource>
+            </AnimatedIcon>
+        </Button>
+        <!--Delete.minecraftPath-->
+        <Button HorizontalAlignment="Right" Height="40" Width="40" Margin="0,15,100,0" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" >
+            <FontIcon FontSize="16" Glyph="&#xE74D;" Foreground="Red"/>
+        </Button>
+        <!--.minecraftPath-->
+        <ScrollViewer Margin="0,60,0,0" Height="300" Width="500">
+            <ListView x:Name="SetVersionPathListView" x:FieldModifier="public" HorizontalAlignment="Stretch" IsItemClickEnabled="True">
+
+            </ListView>
+        </ScrollViewer>
+        <!--Info-->
+        <InfoBar x:Name="SetVersionPathMessage" x:FieldModifier="public" Grid.Row="1" VerticalAlignment="Bottom" Margin="10,10" IsOpen="False" Severity="Error" Title="啊这......"/>
+    </Grid>
+</Page>

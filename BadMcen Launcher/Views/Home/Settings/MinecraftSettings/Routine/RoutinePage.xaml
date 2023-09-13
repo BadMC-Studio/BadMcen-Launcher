@@ -41,7 +41,7 @@
                                     </TeachingTip.Content>
                                 </TeachingTip>
                                 <!--SetVersionPathButton-->
-                                <HyperlinkButton Height="30" Width="300" Margin="50,0"/>
+                                <HyperlinkButton Height="30" Width="300" Margin="50,0" Click="SetVersionPathClick"/>
                             </Grid>
                         </labs:SettingsCard>
                         <!--VersionIsolation-->

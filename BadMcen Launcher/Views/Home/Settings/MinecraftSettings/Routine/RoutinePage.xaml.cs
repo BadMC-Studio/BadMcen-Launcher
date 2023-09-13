@@ -13,6 +13,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using static BadMcen_Launcher.Models.Definition;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -28,9 +29,29 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
         {
             this.InitializeComponent();
         }
-        
-        //Set Version Path Dialog
 
+        //Set Version Path Dialog
+        private async void SetVersionPathClick(object sender, RoutedEventArgs e)
+        {
+            ContentDialog SetVersionPathdialog = new ContentDialog();
+
+            SetVersionPathdialog.XamlRoot = this.XamlRoot;
+            //DialogContentStyle
+            SetVersionPathdialog.Style = Microsoft.UI.Xaml.Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            //DialogContentTitle
+            SetVersionPathdialog.Title = LanguageLoader.resourceLoader.GetString("RoutinePage_ExpanderSetVersionPath01");
+            //PrimaryButton
+            SetVersionPathdialog.PrimaryButtonText = LanguageLoader.resourceLoader.GetString("RoutinePage_ExpanderSetVersionPath02");
+            //CloseButton
+            SetVersionPathdialog.CloseButtonText = LanguageLoader.resourceLoader.GetString("RoutinePage_ExpanderSetVersionPath03");
+            //DefaultButton
+            SetVersionPathdialog.DefaultButton = ContentDialogButton.Primary;
+            //DialogContentPage
+            SetVersionPathdialog.Content = new SetVersionPathPage(SetVersionPathdialog);
+            //PrimaryButtonEnabled
+            SetVersionPathdialog.IsPrimaryButtonEnabled = false;
+            var result = await SetVersionPathdialog.ShowAsync();
+        }
 
         //Set version path Help
         private void SetVersionPathHelpClick(object sender, RoutedEventArgs e)

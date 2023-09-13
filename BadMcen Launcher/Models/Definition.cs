@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Windows.ApplicationModel.Resources;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,5 +14,6 @@ namespace BadMcen_Launcher.Models
             //Get AppData path
             public string FolderPath = Windows.Storage.ApplicationData.Current.RoamingFolder.Path;
         }
+        public class LanguageLoader { public static ResourceLoader resourceLoader = new ResourceLoader(); }
     }
 }

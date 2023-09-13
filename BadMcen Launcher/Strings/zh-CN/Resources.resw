@@ -123,6 +123,15 @@
   <data name="MainPage_LaunchButton.Text" xml:space="preserve">
     <value>启动Minecraft！</value>
   </data>
+  <data name="RoutinePage_ExpanderSetVersionPath01" xml:space="preserve">
+    <value>选择一个.minecraft文件夹</value>
+  </data>
+  <data name="RoutinePage_ExpanderSetVersionPath02" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="RoutinePage_ExpanderSetVersionPath03" xml:space="preserve">
+    <value>取消</value>
+  </data>
   <data name="RoutinePage_ExpanderSetVersionPathHeader.Header" xml:space="preserve">
     <value>.minecraft 文件夹路径</value>
   </data>
@@ -170,5 +179,14 @@
   </data>
   <data name="SettingsPage_MenuItems2" xml:space="preserve">
     <value>常规</value>
+  </data>
+  <data name="SetVersionPathPage_ErrorMessage01" xml:space="preserve">
+    <value>你选择的.minecraft文件夹重复了:(</value>
+  </data>
+  <data name="SetVersionPathPage_ErrorMessage02" xml:space="preserve">
+    <value>你选择的文件夹好像不是.minecraft文件夹(是否需要点击+创建一个？)</value>
+  </data>
+  <data name="SetVersionPathPage_ErrorMessageTitle" xml:space="preserve">
+    <value>啊呀！Σ(っ °Д °;)っ</value>
   </data>
 </root>

@@ -23,6 +23,12 @@
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Models\Theme\**" />
+    <EmbeddedResource Remove="Models\Theme\**" />
+    <None Remove="Models\Theme\**" />
+    <Page Remove="Models\Theme\**" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Remove="Assets\Logos\BadgeLogo.scale-125.png" />
     <Content Remove="Assets\Logos\BadgeLogo.scale-150.png" />
     <Content Remove="Assets\Logos\BadgeLogo.scale-200.png" />
@@ -53,9 +59,6 @@
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\Theme\" />
-  </ItemGroup>
 
   <!-- 
     Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution 
@@ -65,4 +68,15 @@
   <PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
   </PropertyGroup>
+  <ItemGroup>
+    <PRIResource Remove="Models\Theme\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Views\Home\Settings\MinecraftSettings\Routine\SetVersionPathPage.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\Home\Settings\MinecraftSettings\Routine\SetVersionPathPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
 </Project>
