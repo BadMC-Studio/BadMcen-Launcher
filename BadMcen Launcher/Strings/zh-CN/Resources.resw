@@ -186,11 +186,17 @@
   <data name="SetVersionPathPage_ErrorMessage02" xml:space="preserve">
     <value>你选择的文件夹好像不是.minecraft文件夹(是否需要点击+创建一个？)</value>
   </data>
+  <data name="SetVersionPathPage_ErrorMessage03" xml:space="preserve">
+    <value>你没有选中任何.minecraft文件夹！</value>
+  </data>
   <data name="SetVersionPathPage_ErrorMessageTitle" xml:space="preserve">
     <value>啊呀！Σ(っ °Д °;)っ</value>
   </data>
   <data name="SetVersionPathPage_SuccessMessage01" xml:space="preserve">
     <value>1个.minecraft文件夹添加成功！</value>
+  </data>
+  <data name="SetVersionPathPage_SuccessMessage02" xml:space="preserve">
+    <value>一个.minecraft文件夹被删除.（本体仍然存在）</value>
   </data>
   <data name="SetVersionPathPage_SuccessMessageTitle" xml:space="preserve">
     <value>成功！</value>

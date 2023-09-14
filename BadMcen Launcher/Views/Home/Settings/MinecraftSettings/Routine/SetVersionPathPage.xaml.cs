@@ -18,6 +18,9 @@ using Windows.Storage.Pickers;
 using Windows.Storage;
 using WinRT.Interop;
 using Microsoft.UI.Xaml.Media.Animation;
+using static BadMcen_Launcher.Models.CreateOrUse.CreateOrUseFiles;
+using System.Text.Json;
+using Microsoft.UI.Xaml.Shapes;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -29,9 +32,14 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
     /// </summary>
     public sealed partial class SetVersionPathPage : Page
     {
+        private ContentDialog setVersionPathdialog;
         public SetVersionPathPage(ContentDialog SetVersionPathdialog)
         {
             this.InitializeComponent();
+            Instance = this;
+            setVersionPathdialog = SetVersionPathdialog;
+            SetVersionPathJson setVersionPathJson = new SetVersionPathJson();
+            setVersionPathJson.ReadJson();
         }
 
         private void ErrorMessage()
@@ -48,6 +56,7 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
             SetVersionPathMessage.IsOpen = true;
         }
 
+        
 
         private async void SetVersionPathPicker(object sender, RoutedEventArgs e)
         {
@@ -79,10 +88,33 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
             else if (folder.Name == ".minecraft")
             {
                 SetVersionPathListView.Items.Add(folder.Path);
+                SetVersionPathJson setVersionPathJson = new SetVersionPathJson();
+                setVersionPathJson.WriteJson(folder.Path);
                 SetVersionPathMessage.Message = LanguageLoader.resourceLoader.GetString("SetVersionPathPage_SuccessMessage01");
                 SuccessMessage();
-
             }
         }
+
+        private void DeleteMinecraftPathClick(object sender, RoutedEventArgs e)
+        {
+            if (SetVersionPathListView.SelectedIndex != -1)
+            {
+                setVersionPathdialog.IsPrimaryButtonEnabled = false;
+                SetVersionPathJson setVersionPathJson = new SetVersionPathJson();
+                setVersionPathJson.DeleteJson(SetVersionPathListView.SelectedIndex);
+                SetVersionPathListView.Items.RemoveAt(SetVersionPathListView.SelectedIndex);
+                SetVersionPathMessage.Message = LanguageLoader.resourceLoader.GetString("SetVersionPathPage_SuccessMessage02");
+                SuccessMessage();
+            }
+            else
+            {
+                SetVersionPathMessage.Message = LanguageLoader.resourceLoader.GetString("SetVersionPathPage_ErrorMessage03");
+                ErrorMessage();
+            }
+        }
+    }
+    public partial class SetVersionPathPage
+    {
+        public static SetVersionPathPage Instance { get; private set; }
     }
 }

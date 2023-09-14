@@ -20,6 +20,7 @@ using WinRT.Interop;
 using static BadMcen_Launcher.Models.Definition;
 using BadMcen_Launcher.Models.CreateOrUse;
 using BadMcen_Launcher.Views;
+using static BadMcen_Launcher.Models.CreateOrUse.CreateOrUseFiles;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -62,7 +63,7 @@ namespace BadMcen_Launcher
         private void InvokeExternalCode()
         {
             //CreateOrSearchFiles.cs
-            CreateOrUseFiles CreateOrSearchFilesObject = new CreateOrUseFiles();
+            SetVersionPathJson CreateOrSearchFilesObject = new SetVersionPathJson();
             CreateOrSearchFilesObject.CreateJson();
             //CreateOrSearchFolders.cs
             CreateOrUseFolders CreateOrSearchFoldersObject = new CreateOrUseFolders();
