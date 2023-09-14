@@ -18,7 +18,7 @@ using Windows.Foundation.Collections;
 using Windows.Graphics;
 using WinRT.Interop;
 using static BadMcen_Launcher.Models.Definition;
-using BadMcen_Launcher.Models.Create;
+using BadMcen_Launcher.Models.CreateOrUse;
 using BadMcen_Launcher.Views;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -35,11 +35,11 @@ namespace BadMcen_Launcher
 
         public MainWindow()
         {
+            Instance = this;
             SetWindow();
             InvokeExternalCode();
             this.InitializeComponent();
             SetWallpaper();
-            Instance = this;
             MainFrame.Navigate(typeof(MainPage));
         }
 
@@ -57,32 +57,16 @@ namespace BadMcen_Launcher
             //Set TitleBar title
             m_appWindow.Title = "BadMcen Launcher";
         }
-        //SetWallpaper
-        public void SetWallpaper()
-        {
-
-            PathCode pathCode = new PathCode();
-            string folders = System.IO.Path.Combine(pathCode.FolderPath, @"BadMC\BadMcen Launcher\Wallpaper");
-            string[] files = Directory.GetFiles(folders, "*.png");
-            if (Directory.GetFiles(folders).Length > 0)
-            {
-                Random random = new Random();
-                string randomFile = files[random.Next(files.Length)];
-                ImageBrush brush = new ImageBrush();
-                brush.ImageSource = new BitmapImage(new Uri(randomFile));
-                MainFrame.Background = brush;
-            }
-        }
 
         //Invoke external code
         private void InvokeExternalCode()
         {
             //CreateOrSearchFiles.cs
-            CreateOrSearchFiles CreateOrSearchFilesObject = new CreateOrSearchFiles();
+            CreateOrUseFiles CreateOrSearchFilesObject = new CreateOrUseFiles();
+            CreateOrSearchFilesObject.CreateJson();
             //CreateOrSearchFolders.cs
-            CreateOrSearchFolders CreateOrSearchFoldersObject = new CreateOrSearchFolders();
+            CreateOrUseFolders CreateOrSearchFoldersObject = new CreateOrUseFolders();
             CreateOrSearchFoldersObject.CreateInitialFolders();
-            //Wallpaper.cs
 
         }
 
@@ -93,7 +77,74 @@ namespace BadMcen_Launcher
             WindowId myWndId = Win32Interop.GetWindowIdFromWindow(hWnd);
             return Microsoft.UI.Windowing.AppWindow.GetFromWindowId(myWndId);
         }
+        //SetWallpaper
+        public void SetWallpaper()
+        {
+            PathCode pathCode = new PathCode();
+            string folders = Path.Combine(pathCode.AppDataFolderPath, @"BadMC\BadMcen Launcher\Wallpaper");
+            
+            string WallPaperMode = "RandomWallpaper";
+            switch (WallPaperMode)
+            {
+                //Set wallpapers as static
+                case "StaticWallpaper":
+                    string file = Path.Combine(folders, "skyblock3 (1).jpg");
+                    if (File.Exists(file))
+                    {
+                        ImageBrush brush = new ImageBrush();
+                        brush.ImageSource = new BitmapImage(new Uri(file));
+                        MainFrame.Background = brush;
+                    }
+                    break;
+                //Set wallpapers as random
+                case "RandomWallpaper":
+                    string[] files = Directory.GetFiles(folders, "*.png");
+                    if (Directory.GetFiles(folders).Length > 0)
+                    {
+                        Random random = new Random();
+                        string randomFile = files[random.Next(files.Length)];
+                        ImageBrush brush = new ImageBrush();
+                        brush.ImageSource = new BitmapImage(new Uri(randomFile));
+                        MainFrame.Background = brush;
+                    }
+                    break;
+                //Set wallpaper as acrylic
+                case "AcrylicWallpaper":
 
+                    MainWindow.Instance.SystemBackdrop = new DesktopAcrylicBackdrop();
+                    bool TrySetDesktopAcrylicBackdrop()
+                    {
+                        if (Microsoft.UI.Composition.SystemBackdrops.DesktopAcrylicController.IsSupported())
+                        {
+                            Microsoft.UI.Xaml.Media.DesktopAcrylicBackdrop DesktopAcrylicBackdrop = new Microsoft.UI.Xaml.Media.DesktopAcrylicBackdrop();
+                            this.SystemBackdrop = DesktopAcrylicBackdrop;
+
+                            return true; // Succeeded.
+                        }
+
+                        return false; // DesktopAcrylic is not supported on this system.
+                    }
+                    break;
+                //Set wallpaper as mica
+                case "MicaWallpaper":
+                    MainWindow.Instance.SystemBackdrop = new MicaBackdrop();
+                    bool TrySetMicaBackdrop(bool useMicaAlt)
+                    {
+                        if (Microsoft.UI.Composition.SystemBackdrops.MicaController.IsSupported())
+                        {
+                            Microsoft.UI.Xaml.Media.MicaBackdrop micaBackdrop = new Microsoft.UI.Xaml.Media.MicaBackdrop();
+                            micaBackdrop.Kind = useMicaAlt ? Microsoft.UI.Composition.SystemBackdrops.MicaKind.BaseAlt : Microsoft.UI.Composition.SystemBackdrops.MicaKind.Base;
+                            this.SystemBackdrop = micaBackdrop;
+
+                            return true;
+                        }
+
+                        return false;
+                    }
+                    break;
+            }
+
+        }
     }
 
     public partial class MainWindow

@@ -17,6 +17,7 @@ using static BadMcen_Launcher.Models.Definition;
 using Windows.Storage.Pickers;
 using Windows.Storage;
 using WinRT.Interop;
+using Microsoft.UI.Xaml.Media.Animation;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -32,12 +33,21 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
         {
             this.InitializeComponent();
         }
+
         private void ErrorMessage()
         {
             SetVersionPathMessage.Severity = InfoBarSeverity.Error;
             SetVersionPathMessage.Title = LanguageLoader.resourceLoader.GetString("SetVersionPathPage_ErrorMessageTitle");
             SetVersionPathMessage.IsOpen = true;
         }
+
+        private void SuccessMessage()
+        {
+            SetVersionPathMessage.Severity = InfoBarSeverity.Success;
+            SetVersionPathMessage.Title = LanguageLoader.resourceLoader.GetString("SetVersionPathPage_SuccessMessageTitle");
+            SetVersionPathMessage.IsOpen = true;
+        }
+
 
         private async void SetVersionPathPicker(object sender, RoutedEventArgs e)
         {
@@ -49,7 +59,6 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
 
             // Set options for your folder picker
             openPicker.SuggestedStartLocation = PickerLocationId.Desktop;
-            openPicker.FileTypeFilter.Add("*");
 
             // Open the picker for the user to pick a folder
             StorageFolder folder = await openPicker.PickSingleFolderAsync();
@@ -66,6 +75,13 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
             {
                 SetVersionPathMessage.Message = LanguageLoader.resourceLoader.GetString("SetVersionPathPage_ErrorMessage02");
                 ErrorMessage();
+            }
+            else if (folder.Name == ".minecraft")
+            {
+                SetVersionPathListView.Items.Add(folder.Path);
+                SetVersionPathMessage.Message = LanguageLoader.resourceLoader.GetString("SetVersionPathPage_SuccessMessage01");
+                SuccessMessage();
+
             }
         }
     }

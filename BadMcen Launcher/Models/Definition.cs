@@ -12,8 +12,9 @@ namespace BadMcen_Launcher.Models
         public class PathCode
         {
             //Get AppData path
-            public string FolderPath = Windows.Storage.ApplicationData.Current.RoamingFolder.Path;
+            public string AppDataFolderPath = Windows.Storage.ApplicationData.Current.RoamingFolder.Path;
         }
+        //
         public class LanguageLoader { public static ResourceLoader resourceLoader = new ResourceLoader(); }
     }
 }

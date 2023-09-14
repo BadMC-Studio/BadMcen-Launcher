@@ -189,4 +189,10 @@
   <data name="SetVersionPathPage_ErrorMessageTitle" xml:space="preserve">
     <value>啊呀！Σ(っ °Д °;)っ</value>
   </data>
+  <data name="SetVersionPathPage_SuccessMessage01" xml:space="preserve">
+    <value>1个.minecraft文件夹添加成功！</value>
+  </data>
+  <data name="SetVersionPathPage_SuccessMessageTitle" xml:space="preserve">
+    <value>成功！</value>
+  </data>
 </root>

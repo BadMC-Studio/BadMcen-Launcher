@@ -37,6 +37,7 @@
             </ListView>
         </ScrollViewer>
         <!--Info-->
-        <InfoBar x:Name="SetVersionPathMessage" x:FieldModifier="public" Grid.Row="1" VerticalAlignment="Bottom" Margin="10,10" IsOpen="False" Severity="Error" Title="啊这......"/>
+        <InfoBar x:Name="SetVersionPathMessage" x:FieldModifier="public" VerticalAlignment="Bottom" Margin="10,10" IsOpen="False" Severity="Error">
+        </InfoBar>
     </Grid>
 </Page>

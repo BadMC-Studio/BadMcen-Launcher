@@ -12,7 +12,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
-using BadMcen_Launcher.Models.Create;
+using BadMcen_Launcher.Models.CreateOrUse;
 using Microsoft.UI.Xaml.Media.Imaging;
 using BadMcen_Launcher.Views.Home;
 using BadMcen_Launcher.Views.SetVersion;
@@ -38,8 +38,8 @@ namespace BadMcen_Launcher.Views
 
         public void InvokeExternalCode()
         {
-            CreateOrSearchFiles CreateOrSearchFilesObject = new CreateOrSearchFiles();
-            CreateOrSearchFiles CreateOrSearchFoldersObject = new CreateOrSearchFiles();
+            CreateOrUseFiles CreateOrSearchFilesObject = new CreateOrUseFiles();
+            CreateOrUseFiles CreateOrSearchFoldersObject = new CreateOrUseFiles();
             
         }
 

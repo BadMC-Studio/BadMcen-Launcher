@@ -28,17 +28,6 @@
     <None Remove="Models\Theme\**" />
     <Page Remove="Models\Theme\**" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Remove="Assets\Logos\BadgeLogo.scale-125.png" />
-    <Content Remove="Assets\Logos\BadgeLogo.scale-150.png" />
-    <Content Remove="Assets\Logos\BadgeLogo.scale-200.png" />
-    <Content Remove="Assets\Logos\BadgeLogo.scale-400.png" />
-    <Content Remove="Assets\Logos\StoreLogo.scale-100.png" />
-    <Content Remove="Assets\Logos\StoreLogo.scale-125.png" />
-    <Content Remove="Assets\Logos\StoreLogo.scale-150.png" />
-    <Content Remove="Assets\Logos\StoreLogo.scale-200.png" />
-    <Content Remove="Assets\Logos\StoreLogo.scale-400.png" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Labs.WinUI.SettingsControls" Version="0.0.18" />
@@ -72,6 +61,15 @@
     <PRIResource Remove="Models\Theme\**" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Assets\Logos\BadgeLogo.scale-125.png" />
+    <None Remove="Assets\Logos\BadgeLogo.scale-150.png" />
+    <None Remove="Assets\Logos\BadgeLogo.scale-200.png" />
+    <None Remove="Assets\Logos\BadgeLogo.scale-400.png" />
+    <None Remove="Assets\Logos\StoreLogo.scale-100.png" />
+    <None Remove="Assets\Logos\StoreLogo.scale-125.png" />
+    <None Remove="Assets\Logos\StoreLogo.scale-150.png" />
+    <None Remove="Assets\Logos\StoreLogo.scale-200.png" />
+    <None Remove="Assets\Logos\StoreLogo.scale-400.png" />
     <None Remove="Views\Home\Settings\MinecraftSettings\Routine\SetVersionPathPage.xaml" />
   </ItemGroup>
   <ItemGroup>
