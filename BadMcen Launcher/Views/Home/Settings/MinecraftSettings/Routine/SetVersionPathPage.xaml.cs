@@ -57,7 +57,7 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
         }
 
         
-
+        //File picker
         private async void SetVersionPathPicker(object sender, RoutedEventArgs e)
         {
             // Create a folder picker
@@ -94,14 +94,14 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
                 SuccessMessage();
             }
         }
-
+        //Delete path
         private void DeleteMinecraftPathClick(object sender, RoutedEventArgs e)
         {
             if (SetVersionPathListView.SelectedIndex != -1)
             {
                 setVersionPathdialog.IsPrimaryButtonEnabled = false;
                 SetVersionPathJson setVersionPathJson = new SetVersionPathJson();
-                setVersionPathJson.DeleteJson(SetVersionPathListView.SelectedIndex);
+                setVersionPathJson.DeleteJsonElement(SetVersionPathListView.SelectedIndex);
                 SetVersionPathListView.Items.RemoveAt(SetVersionPathListView.SelectedIndex);
                 SetVersionPathMessage.Message = LanguageLoader.resourceLoader.GetString("SetVersionPathPage_SuccessMessage02");
                 SuccessMessage();
@@ -111,6 +111,11 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
                 SetVersionPathMessage.Message = LanguageLoader.resourceLoader.GetString("SetVersionPathPage_ErrorMessage03");
                 ErrorMessage();
             }
+        }
+
+        private void SetVersionPathListViewClick(object sender, ItemClickEventArgs e)
+        {
+            setVersionPathdialog.IsPrimaryButtonEnabled = true;
         }
     }
     public partial class SetVersionPathPage

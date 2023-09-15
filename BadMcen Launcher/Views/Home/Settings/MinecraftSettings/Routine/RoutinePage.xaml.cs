@@ -6,13 +6,18 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using Microsoft.VisualBasic;
+using MinecraftLaunch.Modules.Models.Launch;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text.Json;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Networking.Connectivity;
+using static BadMcen_Launcher.Models.CreateOrUse.CreateOrUseFiles;
 using static BadMcen_Launcher.Models.Definition;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -28,6 +33,14 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
         public RoutinePage()
         {
             this.InitializeComponent();
+            InitialInformation();
+        }
+        //Initial Information
+        private void InitialInformation()
+        {
+            //Minecraft Path
+            object InitialMinecraftPath = LaunchInfo.ReadJson("MinecraftPath");
+            SetVersionPath.Content = InitialMinecraftPath;
         }
 
         //Set Version Path Dialog
@@ -51,6 +64,11 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
             //PrimaryButtonEnabled
             SetVersionPathdialog.IsPrimaryButtonEnabled = false;
             var result = await SetVersionPathdialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                LaunchInfo.WriteJson("MinecraftPath", SetVersionPathPage.Instance.SetVersionPathListView.SelectedItems[0]);
+                SetVersionPath.Content = SetVersionPathPage.Instance.SetVersionPathListView.SelectedItems[0];
+            }
         }
 
         //Set version path Help

@@ -32,7 +32,7 @@
         </Button>
         <!--.minecraftPath-->
         <ScrollViewer Margin="0,60,0,0" Height="300" Width="500">
-            <ListView x:Name="SetVersionPathListView" x:FieldModifier="public" HorizontalAlignment="Stretch" IsItemClickEnabled="True">
+            <ListView x:Name="SetVersionPathListView" ItemClick="SetVersionPathListViewClick" x:FieldModifier="public" HorizontalAlignment="Stretch" IsItemClickEnabled="True">
 
             </ListView>
         </ScrollViewer>

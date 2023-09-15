@@ -63,8 +63,8 @@ namespace BadMcen_Launcher
         private void InvokeExternalCode()
         {
             //CreateOrSearchFiles.cs
-            SetVersionPathJson CreateOrSearchFilesObject = new SetVersionPathJson();
-            CreateOrSearchFilesObject.CreateJson();
+            CreateOrUseFiles CreateOrUseFilesObject = new CreateOrUseFiles();
+            CreateOrUseFilesObject.CreateJson();
             //CreateOrSearchFolders.cs
             CreateOrUseFolders CreateOrSearchFoldersObject = new CreateOrUseFolders();
             CreateOrSearchFoldersObject.CreateInitialFolders();
