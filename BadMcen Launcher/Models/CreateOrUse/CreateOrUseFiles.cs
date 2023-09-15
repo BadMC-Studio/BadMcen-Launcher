@@ -2,6 +2,7 @@
 using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -17,8 +18,7 @@ namespace BadMcen_Launcher.Models.CreateOrUse
         //Get Path
         static PathCode pathCode = new PathCode();
         //Create List
-        static List<string> folderPath = new List<string>();
-        static HashSet<Dictionary<string, object>> MCConfig = new HashSet<Dictionary<string, object>>();
+        static List<string> MinecraftPath = new List<string>();
         //Get json path
         public static string MCPath = Path.Combine(pathCode.AppDataFolderPath, @"BadMC\BadMcen Launcher\Config\Settings\MCPath.json");
         public static string LaunchConfigPath = Path.Combine(pathCode.AppDataFolderPath, @"BadMC\BadMcen Launcher\Config\LaunchConfig.json");
@@ -34,14 +34,9 @@ namespace BadMcen_Launcher.Models.CreateOrUse
             
             public async void DeleteJsonElement(int RemovePath)
             {
-                //Read json
-                string json = File.ReadAllText(MCPath);
-                //Deserialization
-                List<string> PathJson = JsonSerializer.Deserialize<List<string>>(json);
-                //Delete Item
-                PathJson.RemoveAt(RemovePath);
+                MinecraftPath.RemoveAt(RemovePath);
                 //Serialize
-                string writeJson = JsonSerializer.Serialize(PathJson);
+                string writeJson = JsonSerializer.Serialize(MinecraftPath);
                 //Write Json
                 await File.WriteAllTextAsync(MCPath, writeJson);
             }
@@ -50,9 +45,9 @@ namespace BadMcen_Launcher.Models.CreateOrUse
             {
                 
                 //Add to string
-                folderPath.Add(AddPath);
+                MinecraftPath.Add(AddPath);
                 //String to json
-                string json = JsonSerializer.Serialize(folderPath);
+                string json = JsonSerializer.Serialize(MinecraftPath);
                 //Write to json
                 await File.WriteAllTextAsync(Path.Combine(pathCode.AppDataFolderPath, @"BadMC\BadMcen Launcher\Config\Settings\MCPath.json"), json);
             }
@@ -68,7 +63,7 @@ namespace BadMcen_Launcher.Models.CreateOrUse
                     foreach (string item in JsonToList)
                     {
                         SetVersionPathPage.Instance.SetVersionPathListView.Items.Add(item);
-                        folderPath.Add(item);
+                        MinecraftPath.Add(item);
                     }
                 }
             }
@@ -82,7 +77,6 @@ namespace BadMcen_Launcher.Models.CreateOrUse
                 var JsonOptions = new JsonSerializerOptions
                 {
                     WriteIndented = true,
-                    DictionaryKeyPolicy = JsonNamingPolicy.CamelCase,
                 };
                 //Add to string
                 var config = new Dictionary<string, object> { {AddDictionary, AddWorth} };
@@ -97,10 +91,23 @@ namespace BadMcen_Launcher.Models.CreateOrUse
             {
                 //Read json and deserialize it.
                 Dictionary<string, object> dict = JsonSerializer.Deserialize<Dictionary<string, object>>(File.ReadAllText(LaunchConfigPath));
-                //Get the value of a specific key
-                object ReturnValue = dict[DictionaryKey];
-                //Return to Dictionary
-                return ReturnValue;
+                if (!string.IsNullOrWhiteSpace(DictionaryKey))
+                {
+                    try
+                    {
+                        //Get the value of a specific key
+                        object ReturnValue = dict[DictionaryKey];
+                        //Return to Dictionary
+                        return ReturnValue;
+                    }
+                    catch (System.Collections.Generic.KeyNotFoundException)
+                    {
+                        Debug.WriteLine("谁让你乱改Json的！");
+                    }
+                    
+                }
+                return null;
+                
             }
             
         }

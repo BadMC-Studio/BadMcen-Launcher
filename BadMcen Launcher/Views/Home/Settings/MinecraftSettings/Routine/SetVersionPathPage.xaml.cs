@@ -40,6 +40,22 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
             setVersionPathdialog = SetVersionPathdialog;
             SetVersionPathJson setVersionPathJson = new SetVersionPathJson();
             setVersionPathJson.ReadJson();
+            ListViewIsOrIsNotEmpty();
+
+
+        }
+        private void ListViewIsOrIsNotEmpty()
+        {
+            if (SetVersionPathListView.Items.Count != 0)
+            {
+                NullFontIcon.Opacity = 0;
+                NullTextBlock.Opacity = 0;
+            }
+            else
+            {
+                NullFontIcon.Opacity = 1;
+                NullTextBlock.Opacity = 1;
+            }
         }
 
         private void ErrorMessage()
@@ -90,6 +106,7 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
                 SetVersionPathListView.Items.Add(folder.Path);
                 SetVersionPathJson setVersionPathJson = new SetVersionPathJson();
                 setVersionPathJson.WriteJson(folder.Path);
+                ListViewIsOrIsNotEmpty();
                 SetVersionPathMessage.Message = LanguageLoader.resourceLoader.GetString("SetVersionPathPage_SuccessMessage01");
                 SuccessMessage();
             }
@@ -99,10 +116,11 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
         {
             if (SetVersionPathListView.SelectedIndex != -1)
             {
-                setVersionPathdialog.IsPrimaryButtonEnabled = false;
                 SetVersionPathJson setVersionPathJson = new SetVersionPathJson();
                 setVersionPathJson.DeleteJsonElement(SetVersionPathListView.SelectedIndex);
                 SetVersionPathListView.Items.RemoveAt(SetVersionPathListView.SelectedIndex);
+                setVersionPathdialog.IsPrimaryButtonEnabled = false;
+                ListViewIsOrIsNotEmpty();
                 SetVersionPathMessage.Message = LanguageLoader.resourceLoader.GetString("SetVersionPathPage_SuccessMessage02");
                 SuccessMessage();
             }

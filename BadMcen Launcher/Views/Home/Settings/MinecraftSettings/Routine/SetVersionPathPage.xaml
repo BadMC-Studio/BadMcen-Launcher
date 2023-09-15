@@ -11,9 +11,19 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     
     <Grid>
+        <FontIcon FontSize="30" x:Name="NullFontIcon" Opacity="0" Glyph="&#xE74D;" Foreground="{ThemeResource TextFillColorSecondaryBrush}">
+            <FontIcon.OpacityTransition>
+                <ScalarTransition/>
+            </FontIcon.OpacityTransition>
+            </FontIcon>
+        <TextBlock Text="这里什么都没有." x:Name="NullTextBlock" Opacity="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="140" Foreground="{ThemeResource TextFillColorSecondaryBrush}">
+        <TextBlock.OpacityTransition>
+            <ScalarTransition />
+        </TextBlock.OpacityTransition>
+        </TextBlock>
         <!--.minecraftPathPicker-->
         <Button HorizontalAlignment="Right" Height="40" Width="40" Margin="0,15,20,0" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Click="SetVersionPathPicker">
-            <FontIcon FontSize="16" Glyph="&#xe838;" />
+            <FontIcon FontSize="16" Glyph="&#xe838;"/>
         </Button>
         <!--SearchVersion-->
         <Button HorizontalAlignment="Right" Height="40" Width="40" Margin="0,15,60,0" VerticalAlignment="Top" Background="Transparent" BorderBrush="{x:Null}" BorderThickness="0">
@@ -30,11 +40,10 @@
         <Button HorizontalAlignment="Right" Height="40" Width="40" Margin="0,15,100,0" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Click="DeleteMinecraftPathClick">
             <FontIcon FontSize="16" Glyph="&#xE74D;" Foreground="Red"/>
         </Button>
+        
         <!--.minecraftPath-->
         <ScrollViewer Margin="0,60,0,0" Height="300" Width="500">
-            <ListView x:Name="SetVersionPathListView" ItemClick="SetVersionPathListViewClick" x:FieldModifier="public" HorizontalAlignment="Stretch" IsItemClickEnabled="True">
-
-            </ListView>
+            <ListView x:Name="SetVersionPathListView" ItemClick="SetVersionPathListViewClick" x:FieldModifier="public" HorizontalAlignment="Stretch" IsItemClickEnabled="True"/>
         </ScrollViewer>
         <!--Info-->
         <InfoBar x:Name="SetVersionPathMessage" x:FieldModifier="public" VerticalAlignment="Bottom" Margin="10,10" IsOpen="False" Severity="Error">
