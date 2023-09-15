@@ -117,7 +117,7 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
             if (SetVersionPathListView.SelectedIndex != -1)
             {
                 SetVersionPathJson setVersionPathJson = new SetVersionPathJson();
-                setVersionPathJson.DeleteJsonElement(SetVersionPathListView.SelectedIndex);
+                setVersionPathJson.DeleteJsonElement(SetVersionPathListView.SelectedItems[0].ToString());
                 SetVersionPathListView.Items.RemoveAt(SetVersionPathListView.SelectedIndex);
                 setVersionPathdialog.IsPrimaryButtonEnabled = false;
                 ListViewIsOrIsNotEmpty();

@@ -32,9 +32,9 @@ namespace BadMcen_Launcher.Models.CreateOrUse
         public class SetVersionPathJson
         {
             
-            public async void DeleteJsonElement(int RemovePath)
+            public async void DeleteJsonElement(string RemovePath)
             {
-                MinecraftPath.RemoveAt(RemovePath);
+                MinecraftPath.Remove(RemovePath);
                 //Serialize
                 string writeJson = JsonSerializer.Serialize(MinecraftPath);
                 //Write Json
