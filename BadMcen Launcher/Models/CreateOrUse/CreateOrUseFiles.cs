@@ -14,6 +14,7 @@ using Windows.ApplicationModel.Email;
 using static BadMcen_Launcher.Models.Definition;
 using Windows.System;
 using Microsoft.Toolkit.Uwp.Notifications;
+using BadMcen_Launcher.Models.ToastNotifications;
 
 namespace BadMcen_Launcher.Models.CreateOrUse
 {
@@ -63,16 +64,23 @@ namespace BadMcen_Launcher.Models.CreateOrUse
             public void ReadJson()
             {
                 //Read json
-                string json = File.ReadAllText(MCPath);
-                if (!string.IsNullOrWhiteSpace(json))
+                try
                 {
-                    List<string> JsonToList = JsonSerializer.Deserialize<List<string>>(json);
-                    MinecraftPath.Clear();
-                    foreach (string item in JsonToList)
+                    string json = File.ReadAllText(MCPath);
+                    if (!string.IsNullOrWhiteSpace(json))
                     {
-                        SetVersionPathPage.Instance.SetVersionPathListView.Items.Add(item);
-                        MinecraftPath.Add(item);
+                        List<string> JsonToList = JsonSerializer.Deserialize<List<string>>(json);
+                        MinecraftPath.Clear();
+                        foreach (string item in JsonToList)
+                        {
+                            SetVersionPathPage.Instance.SetVersionPathListView.Items.Add(item);
+                            MinecraftPath.Add(item);
+                        }
                     }
+                }
+                catch (Exception ex)
+                {
+                    SystemToastNotification.ErrorToast(LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonError"), ex.Message);
                 }
             }
 
@@ -82,12 +90,21 @@ namespace BadMcen_Launcher.Models.CreateOrUse
         {
             public static async void WriteJson(string AddDictionary, object AddWorth)
             {
+                Dictionary<string, object> dict = JsonSerializer.Deserialize<Dictionary<string, object>>(File.ReadAllText(LaunchConfigPath));
                 var JsonOptions = new JsonSerializerOptions
                 {
                     WriteIndented = true,
                 };
                 //Add to string
-                var config = new Dictionary<string, object> { {AddDictionary, AddWorth} };
+                var config = new Dictionary<string, object> { { AddDictionary, AddWorth } };
+                foreach (var item in dict)
+                {
+                    if (!config.ContainsKey(item.Key))
+                    {
+                        config.Add(item.Key, item.Value);
+                    }
+                    
+                }
                 //String to json
                 string json = JsonSerializer.Serialize(config, JsonOptions);
                 //Write to json
@@ -98,26 +115,29 @@ namespace BadMcen_Launcher.Models.CreateOrUse
             public static object ReadJson(string DictionaryKey)
             {
                 //Read json and deserialize it.
-                
-                    try
+                try
+                {
+                    Dictionary<string, object> dict = JsonSerializer.Deserialize<Dictionary<string, object>>(File.ReadAllText(LaunchConfigPath));
+                    if (!string.IsNullOrWhiteSpace(DictionaryKey))
                     {
-                        Dictionary<string, object> dict = JsonSerializer.Deserialize<Dictionary<string, object>>(File.ReadAllText(LaunchConfigPath));
-                        if (!string.IsNullOrWhiteSpace(DictionaryKey))
+                        //Get the value of a specific key
+                        
+                        if (dict.TryGetValue(DictionaryKey, out var value))
                         {
-                            //Get the value of a specific key
-                            object ReturnValue = dict[DictionaryKey];
+                            object ReturnValue = value;
                             //Return to Dictionary
                             return ReturnValue;
                         }
+                        else
+                        {
+                            return null;
+                            
+                        }
                     }
-                    catch
-                    {
-                    new ToastContentBuilder()
-                    .AddArgument("action", "viewConversation")
-                    .AddArgument("conversationId", 9813)
-                    .AddText("Andrew sent you a picture")
-                    .AddText("Check this out, The Enchantments in Washington!")
-                    .Show();
+                }
+                catch (Exception ex)
+                {
+                    SystemToastNotification.ErrorToast(LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonError"), ex.Message);
                 }
                 return null;
             }

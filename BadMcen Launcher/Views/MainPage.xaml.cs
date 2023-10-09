@@ -18,6 +18,7 @@ using BadMcen_Launcher.Views.Home;
 using BadMcen_Launcher.Views.SetVersion;
 using Microsoft.UI.Xaml.Media.Animation;
 using System.Threading.Tasks;
+using BadMcen_Launcher.Models.ToastNotifications;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -39,14 +40,16 @@ namespace BadMcen_Launcher.Views
 
         public void InvokeExternalCode()
         {
-            CreateOrUseFiles CreateOrSearchFilesObject = new CreateOrUseFiles();
             CreateOrUseFiles CreateOrSearchFoldersObject = new CreateOrUseFiles();
+            CreateOrUseFiles CreateOrSearchFilesObject = new CreateOrUseFiles();
+
             
         }
 
         //Navigate to HomePage or SetVersionPage
         private void AppView(object sender, RoutedEventArgs e)
         {
+            
             if (MainFrame.Content == null || MainFrame.Content.GetType() == typeof(SetVersionPage))
             {
                 MainFrame.Navigate(typeof(HomePage), null);

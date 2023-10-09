@@ -204,4 +204,13 @@
   <data name="SetVersionPathPage_SuccessMessageTitle" xml:space="preserve">
     <value>成功！</value>
   </data>
+  <data name="Toast_ErrorToastSubTitle" xml:space="preserve">
+    <value>详细信息：</value>
+  </data>
+  <data name="Toast_ErrorToastTitle" xml:space="preserve">
+    <value>BadMcen Launcher捕获到的异常</value>
+  </data>
+  <data name="Toast_ErrorToast_ReadJsonError" xml:space="preserve">
+    <value>谁让你乱改Json的！</value>
+  </data>
 </root>

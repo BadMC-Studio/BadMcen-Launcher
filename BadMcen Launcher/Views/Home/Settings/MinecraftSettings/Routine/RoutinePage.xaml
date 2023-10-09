@@ -58,7 +58,7 @@
                                     </TeachingTip.Content>
                                 </TeachingTip>
                                 <!--VersionIsolationToggleSwitch-->
-                                <ToggleSwitch Margin="50,0" OffContent="关" OnContent="开" x:Name="IndependencyCore" x:Uid="RoutinePage_ExpanderVersionIsolationToggleSwitch"/>
+                                <ToggleSwitch Margin="50,0" OffContent="关" OnContent="开" x:Name="VersionIsolationToggleSwitch" x:Uid="RoutinePage_ExpanderVersionIsolationToggleSwitch" Toggled="VersionIsolationToggleSwitch_Toggled"/>
                             </Grid>
                         </labs:SettingsCard>
                     </labs:SettingsExpander.Items>

@@ -62,13 +62,12 @@ namespace BadMcen_Launcher
         //Invoke external code
         private void InvokeExternalCode()
         {
-            //CreateOrSearchFiles.cs
-            CreateOrUseFiles CreateOrUseFilesObject = new CreateOrUseFiles();
-            CreateOrUseFilesObject.CreateJson();
             //CreateOrSearchFolders.cs
             CreateOrUseFolders CreateOrSearchFoldersObject = new CreateOrUseFolders();
             CreateOrSearchFoldersObject.CreateInitialFolders();
-
+            //CreateOrSearchFiles.cs
+            CreateOrUseFiles CreateOrUseFilesObject = new CreateOrUseFiles();
+            CreateOrUseFilesObject.CreateJson();
         }
 
         //Gets the application window object for the current window
@@ -84,7 +83,7 @@ namespace BadMcen_Launcher
             PathCode pathCode = new PathCode();
             string folders = Path.Combine(pathCode.AppDataFolderPath, @"BadMC\BadMcen Launcher\Wallpaper");
             
-            string WallPaperMode = "RandomWallpaper";
+            string WallPaperMode = "MicaWallpaper";
             switch (WallPaperMode)
             {
                 //Set wallpapers as static

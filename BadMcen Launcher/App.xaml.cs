@@ -44,6 +44,7 @@ namespace BadMcen_Launcher
         public App()
         {
             this.InitializeComponent();
+            Microsoft.Toolkit.Uwp.Notifications.ToastNotificationManagerCompat.OnActivated += ToastNotificationManagerCompat_OnActivated;
             ApplicationLanguages.PrimaryLanguageOverride = "zh-CN";
         }
 
@@ -54,7 +55,6 @@ namespace BadMcen_Launcher
         
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-
             MainWindow = new MainWindow();
             _windowHandle = WindowNative.GetWindowHandle(MainWindow);
             var windowId = Win32Interop.GetWindowIdFromWindow(_windowHandle);
@@ -63,11 +63,24 @@ namespace BadMcen_Launcher
             MainWindow.Activate();
             AppWindow.TitleBar.ButtonBackgroundColor = Colors.Transparent;
             AppWindow.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;  
-
-           
-
         }
-        
+
+        private static void ToastNotificationManagerCompat_OnActivated(Microsoft.Toolkit.Uwp.Notifications.ToastNotificationActivatedEventArgsCompat e)
+        {
+            var ToastClickArgs = Microsoft.Toolkit.Uwp.Notifications.ToastArguments.Parse(e.Argument);
+            if (ToastClickArgs.Count > 0)
+            {
+                foreach (var ToastClickItem in ToastClickArgs)
+                {
+                    switch (ToastClickItem.Value)
+                    {
+                        case "aaa":
+                            Debug.WriteLine("成了！！！！！！！！！！");
+                            break;
+                    }
+                }
+            }
+        }
 
         private IntPtr _windowHandle;
 

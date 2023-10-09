@@ -10,6 +10,7 @@ using Microsoft.VisualBasic;
 using MinecraftLaunch.Modules.Models.Launch;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -39,6 +40,7 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
         private void InitialInformation()
         {
             object InitialMinecraftPath = LaunchInfo.ReadJson("MinecraftPath");
+            object InitialVersionIsolation = LaunchInfo.ReadJson("VersionIsolation");
             if (InitialMinecraftPath != null)
             {
                 //Minecraft Path
@@ -46,10 +48,18 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
             }
             else
             {
-                
                 SetVersionPath.Content = LanguageLoader.resourceLoader.GetString("RoutinePage_ExpanderSetVersionPathContent01"); ;
             }
-            
+
+            if (InitialVersionIsolation != null)
+            {
+                var element = (JsonElement)InitialVersionIsolation;
+                VersionIsolationToggleSwitch.IsOn = element.GetBoolean();
+            }
+            else
+            {
+                VersionIsolationToggleSwitch.IsOn = false;
+            }
         }
 
         //Set Version Path Dialog
@@ -80,8 +90,14 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
             }
         }
 
-        //Set version path Help
-        private void SetVersionPathHelpClick(object sender, RoutedEventArgs e)
+        //Version Isolation
+        private void VersionIsolationToggleSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+                LaunchInfo.WriteJson("VersionIsolation", VersionIsolationToggleSwitch.IsOn);
+        }
+
+            //Set version path Help
+            private void SetVersionPathHelpClick(object sender, RoutedEventArgs e)
         {
             SetVersionPathHelp.IsOpen = true;
         }
