@@ -37,11 +37,11 @@
                                 <!--SetVersionPathHelpTeachingTip-->
                                 <TeachingTip x:Name="SetVersionPathHelp" Target="{x:Bind SetVersionPathHelpButton}" x:Uid="RoutinePage_ExpanderSetVersionPathHelp01">
                                     <TeachingTip.Content>
-                                        <HyperlinkButton Content="了解更多" NavigateUri="https://minecraft.fandom.com/zh/wiki/.minecraft" x:Uid="RoutinePage_ExpanderSetVersionPathHelp02"/>
+                                        <HyperlinkButton x:Uid="RoutinePage_ExpanderSetVersionPathHelp02"/>
                                     </TeachingTip.Content>
                                 </TeachingTip>
                                 <!--SetVersionPathButton-->
-                                <HyperlinkButton Height="30" Width="300" Margin="50,0" BorderThickness="0" Content="未设置(点击设置)" x:Name="SetVersionPath" Click="SetVersionPathClick"/>
+                                <HyperlinkButton Height="30" Width="300" Margin="50,0" BorderThickness="0" x:Name="SetVersionPath" Click="SetVersionPathClick"/>
                             </Grid>
                         </labs:SettingsCard>
                         <!--VersionIsolation-->
@@ -54,7 +54,7 @@
                                 <!--VersionIsolationHelpTeachingTip-->
                                 <TeachingTip x:Name="VersionIsolationHelpTeachingTip" Target="{x:Bind VersionIsolationHelpButton}" x:Uid="RoutinePage_ExpanderVersionIsolationHelp01">
                                     <TeachingTip.Content>
-                                        <HyperlinkButton Content="了解更多" NavigateUri="https://www.zhihu.com/question/529802349" x:Uid="RoutinePage_ExpanderVersionIsolationHelp02"/>
+                                        <HyperlinkButton NavigateUri="https://www.zhihu.com/question/529802349" x:Uid="RoutinePage_ExpanderVersionIsolationHelp02"/>
                                     </TeachingTip.Content>
                                 </TeachingTip>
                                 <!--VersionIsolationToggleSwitch-->

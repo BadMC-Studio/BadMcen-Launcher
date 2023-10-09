@@ -38,11 +38,16 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
         //Initial Information
         private void InitialInformation()
         {
-            if (LaunchInfo.ReadJson != null)
+            object InitialMinecraftPath = LaunchInfo.ReadJson("MinecraftPath");
+            if (InitialMinecraftPath != null)
             {
                 //Minecraft Path
-                object InitialMinecraftPath = LaunchInfo.ReadJson("MinecraftPath");
                 SetVersionPath.Content = InitialMinecraftPath;
+            }
+            else
+            {
+                
+                SetVersionPath.Content = LanguageLoader.resourceLoader.GetString("RoutinePage_ExpanderSetVersionPathContent01"); ;
             }
             
         }

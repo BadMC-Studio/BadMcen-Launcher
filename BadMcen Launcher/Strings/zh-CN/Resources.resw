@@ -132,6 +132,9 @@
   <data name="RoutinePage_ExpanderSetVersionPath03" xml:space="preserve">
     <value>取消</value>
   </data>
+  <data name="RoutinePage_ExpanderSetVersionPathContent01" xml:space="preserve">
+    <value>未设置或发生错误(点击设置)</value>
+  </data>
   <data name="RoutinePage_ExpanderSetVersionPathHeader.Header" xml:space="preserve">
     <value>.minecraft 文件夹路径</value>
   </data>

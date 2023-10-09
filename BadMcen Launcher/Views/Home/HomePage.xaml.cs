@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.ApplicationSettings;
@@ -29,11 +31,15 @@ namespace BadMcen_Launcher.Views.Home
         public HomePage()
         {
             this.InitializeComponent();
+           
         }
         //Navigate to SettingsPage
         private void Setting_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.Instance.MainFrame.Navigate(typeof(SettingsPage), null, new DrillInNavigationTransitionInfo());
+            
+                MainWindow.Instance.MainFrame.Navigate(typeof(SettingsPage), null, new DrillInNavigationTransitionInfo());
+            
+
         }
     }
 }
