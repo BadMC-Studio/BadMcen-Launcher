@@ -123,6 +123,36 @@
   <data name="MainPage_LaunchButton.Text" xml:space="preserve">
     <value>启动Minecraft！</value>
   </data>
+  <data name="RoutinePage_ExpanderSetJavaPath01" xml:space="preserve">
+    <value>选择或下载一个Java</value>
+  </data>
+  <data name="RoutinePage_ExpanderSetJavaPath02" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="RoutinePage_ExpanderSetJavaPath03" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="RoutinePage_ExpanderSetJavaPathHeader.Header" xml:space="preserve">
+    <value>Java路径</value>
+  </data>
+  <data name="RoutinePage_ExpanderSetJavaPathHelp01.Subtitle" xml:space="preserve">
+    <value>你的Minecraft Java需要一个Java才能运行.</value>
+  </data>
+  <data name="RoutinePage_ExpanderSetJavaPathHelp01.Title" xml:space="preserve">
+    <value>设置Java路径</value>
+  </data>
+  <data name="RoutinePage_ExpanderSetJavaPathHelp02.Content" xml:space="preserve">
+    <value>了解更多</value>
+  </data>
+  <data name="RoutinePage_ExpanderSetJavaPathHelp02.NavigateUri" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RoutinePage_ExpanderSetJavaSettingsHeader.Description" xml:space="preserve">
+    <value>设置Java路径，JVM内存.</value>
+  </data>
+  <data name="RoutinePage_ExpanderSetJavaSettingsHeader.Header" xml:space="preserve">
+    <value>Java设置</value>
+  </data>
   <data name="RoutinePage_ExpanderSetVersionPath01" xml:space="preserve">
     <value>选择一个.minecraft文件夹</value>
   </data>
@@ -211,6 +241,6 @@
     <value>BadMcen Launcher捕获到的异常</value>
   </data>
   <data name="Toast_ErrorToast_ReadJsonError" xml:space="preserve">
-    <value>谁让你乱改Json的！</value>
+    <value>BadMcen Launcher捕获到的异常</value>
   </data>
 </root>

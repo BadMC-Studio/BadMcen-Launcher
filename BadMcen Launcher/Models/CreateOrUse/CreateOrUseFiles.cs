@@ -39,6 +39,7 @@ namespace BadMcen_Launcher.Models.CreateOrUse
             
         }
         //Use files
+        //MCPath.json
         public class SetVersionPathJson
         {
             
@@ -85,7 +86,7 @@ namespace BadMcen_Launcher.Models.CreateOrUse
             }
 
         }
-
+        //LaunchConfig.json
         public class LaunchInfo
         {
             public static async void WriteJson(string AddDictionary, object AddWorth)
@@ -137,7 +138,7 @@ namespace BadMcen_Launcher.Models.CreateOrUse
                 }
                 catch (Exception ex)
                 {
-                    SystemToastNotification.ErrorToast(LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonError"), ex.Message);
+                    AppToastNotification.ErrorToast("Error", LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonError"), ex.Message);
                 }
                 return null;
             }

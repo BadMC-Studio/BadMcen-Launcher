@@ -41,5 +41,6 @@
                 </TransitionCollection>
             </Frame.ContentTransitions>
         </Frame>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Stretch" Width="313" x:Name="ToastStackPanel" x:FieldModifier="public" Spacing="10" Margin="0,10"/>
     </Grid>
 </Window>

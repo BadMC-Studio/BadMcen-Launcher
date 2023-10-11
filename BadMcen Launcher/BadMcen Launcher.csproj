@@ -71,10 +71,22 @@
     <None Remove="Assets\Logos\StoreLogo.scale-150.png" />
     <None Remove="Assets\Logos\StoreLogo.scale-200.png" />
     <None Remove="Assets\Logos\StoreLogo.scale-400.png" />
+    <None Remove="Controls\AppToast\InfoToast.xaml" />
+    <None Remove="Views\Home\Settings\MinecraftSettings\Routine\SetJavaPathPage.xaml" />
     <None Remove="Views\Home\Settings\MinecraftSettings\Routine\SetVersionPathPage.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Views\Home\Settings\MinecraftSettings\Routine\SetJavaPathPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="Views\Home\Settings\MinecraftSettings\Routine\SetVersionPathPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Controls\AppToast\InfoToast.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

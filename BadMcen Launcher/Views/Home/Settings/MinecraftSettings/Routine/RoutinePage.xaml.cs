@@ -96,8 +96,30 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
                 LaunchInfo.WriteJson("VersionIsolation", VersionIsolationToggleSwitch.IsOn);
         }
 
-            //Set version path Help
-            private void SetVersionPathHelpClick(object sender, RoutedEventArgs e)
+        //SetJavaPath
+        private async void SetJavaPathClick(object sender, RoutedEventArgs e)
+        {
+            ContentDialog SetJavaPathdialog = new ContentDialog();
+            SetJavaPathdialog.XamlRoot = this.XamlRoot;
+            //DialogContentStyle
+            SetJavaPathdialog.Style = Microsoft.UI.Xaml.Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            //DialogContentTitle
+            SetJavaPathdialog.Title = LanguageLoader.resourceLoader.GetString("RoutinePage_ExpanderSetJavaPath01");
+            //PrimaryButton
+            SetJavaPathdialog.PrimaryButtonText = LanguageLoader.resourceLoader.GetString("RoutinePage_ExpanderSetJavaPath02");
+            //CloseButton
+            SetJavaPathdialog.CloseButtonText = LanguageLoader.resourceLoader.GetString("RoutinePage_ExpanderSetJavaPath03");
+            //DefaultButton
+            SetJavaPathdialog.DefaultButton = ContentDialogButton.Primary;
+            //DialogContentPage
+            SetJavaPathdialog.Content = new SetJavaPathPage(SetJavaPathdialog);
+            //PrimaryButtonEnabled
+            SetJavaPathdialog.IsPrimaryButtonEnabled = false;
+            var result = await SetJavaPathdialog.ShowAsync();
+        }
+        
+        //Set version path Help
+        private void SetVersionPathHelpClick(object sender, RoutedEventArgs e)
         {
             SetVersionPathHelp.IsOpen = true;
         }
@@ -107,10 +129,11 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
             VersionIsolationHelpTeachingTip.IsOpen = true;
         }
         //Set java path info
-        private void InfoClick2(object sender, RoutedEventArgs e)
+        private void SetJavaPathHelpClick(object sender, RoutedEventArgs e)
         {
-            RoutineInfo2.IsOpen = true;
+            SetJavaPathHelpTeachingTip.IsOpen = true;
         }
 
+        
     }
 }
