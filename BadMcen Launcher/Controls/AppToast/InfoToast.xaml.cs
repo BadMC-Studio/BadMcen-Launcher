@@ -57,30 +57,27 @@ namespace BadMcen_Launcher.Controls.AppToast
         }
         public void AppToast(string ToastType, string ToastTitleText, string ToastSubTitleText)
         {
+            ToastTitle.Text = ToastTitleText;
+            ToastSubTitle.Text = ToastSubTitleText;
             switch (ToastType)
             {
                 case "Error":
-                    ToastTitle.Text = ToastTitleText;
                     ToastIcon.Foreground = (SolidColorBrush)Application.Current.Resources["SystemFillColorCriticalBrush"];
                     ToastIcon.Glyph = "\uEB90";
                     break;
                 case "Warning":
-                    ToastTitle.Text = ToastTitleText;
                     ToastIcon.Foreground = (SolidColorBrush)Application.Current.Resources["SystemFillColorCautionBrush"];
                     ToastIcon.Glyph = "\uF736";
                     break;
                 case "Info":
-                    ToastTitle.Text = ToastTitleText;
                     ToastIcon.Foreground = (SolidColorBrush)Application.Current.Resources["SystemFillColorAttentionBrush"];
                     ToastIcon.Glyph = "\uF167";
                     break;
                 case "Success":
-                    ToastTitle.Text = ToastTitleText;
                     ToastIcon.Foreground = (SolidColorBrush)Application.Current.Resources["SystemFillColorSuccessBrush"];
                     ToastIcon.Glyph = "\uEC61";
                     break;
             }
-            ToastSubTitle.Text = ToastSubTitleText;
         }
     }
 }

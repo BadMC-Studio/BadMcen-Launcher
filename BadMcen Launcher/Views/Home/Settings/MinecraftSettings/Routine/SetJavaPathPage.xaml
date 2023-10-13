@@ -6,10 +6,60 @@
     xmlns:local="using:BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:animatedvisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals" 
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <FontIcon FontSize="30" x:Name="NullFontIcon" Opacity="0" Glyph="&#xE74D;" Foreground="{ThemeResource TextFillColorSecondaryBrush}">
+            <FontIcon.OpacityTransition>
+                <ScalarTransition/>
+            </FontIcon.OpacityTransition>
+        </FontIcon>
+        <TextBlock x:Uid="SetVersionPathPage_NotJavaPath"  x:Name="NullTextBlock" Opacity="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="140" Foreground="{ThemeResource TextFillColorSecondaryBrush}">
+            <TextBlock.OpacityTransition>
+                <ScalarTransition />
+            </TextBlock.OpacityTransition>
+        </TextBlock>
+        <!--JavaPathPicker-->
+        <Button HorizontalAlignment="Right" Height="40" Width="40" Margin="0,15,20,0" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Click="SetJavaPathPicker">
+            <FontIcon FontSize="16" Glyph="&#xe838;"/>
+        </Button>
+        <!--DownloadJava-->
+        <Button HorizontalAlignment="Right" Height="40" Width="40" Margin="0,15,140,0" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Click="DownloadJavaClick">
+            <FontIcon FontSize="16" Glyph="&#xE896;"/>
+        </Button>
+        <!--SearchJava-->
+        <Button HorizontalAlignment="Right" Height="40" Width="40" Margin="0,15,60,0" VerticalAlignment="Top" Background="Transparent" BorderBrush="{x:Null}" BorderThickness="0" Click="SearchJavaClick">
+            <AnimatedIcon x:Name="SearchAnimatedIcon" Width="20" Height="20">
+                <AnimatedIcon.Source>
+                    <animatedvisuals:AnimatedFindVisualSource/>
+                </AnimatedIcon.Source>
+                <AnimatedIcon.FallbackIconSource>
+                    <SymbolIconSource Symbol="Find"/>
+                </AnimatedIcon.FallbackIconSource>
+            </AnimatedIcon>
+        </Button>
+        <!--DeleteJavaPath-->
+        <Button HorizontalAlignment="Right" Height="40" Width="40" Margin="0,15,100,0" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Click="DeleteJavaPathClick">
+            <FontIcon FontSize="16" Glyph="&#xE74D;" Foreground="{ThemeResource SystemFillColorCriticalBrush}"/>
+        </Button>
+
+        <!--JavaPath-->
+        <ScrollViewer Margin="0,60,0,0" Height="300" Width="500">
+            <ListView x:Name="SetJavaPathListView" ItemClick="SetJavaPathListViewClick" x:FieldModifier="public" HorizontalAlignment="Stretch" IsItemClickEnabled="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Spacing="5" Height="60" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding JavaName}" FontWeight="Bold" FontSize="15" Margin="0, 5, 0, 0"/>
+                            <TextBlock Text="{Binding JavaPath}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollViewer>
+        <!--Info-->
+        <InfoBar x:Name="SetJavaPathMessage" x:FieldModifier="public" VerticalAlignment="Bottom" Margin="10,10" IsOpen="False" Severity="Error"/>
 
     </Grid>
 </Page>

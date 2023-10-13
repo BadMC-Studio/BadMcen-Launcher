@@ -23,7 +23,7 @@
         <ScrollViewer Grid.Row="1" Margin="10,10,0,0">
             <StackPanel>
                 <!--SetVersionPath-->
-                <labs:SettingsExpander Grid.Row="1" Margin="20,20,20,20" x:Uid="RoutinePage_ExpanderSetVersionSettingsHeader">
+                <labs:SettingsExpander Grid.Row="1" Margin="20,5" x:Uid="RoutinePage_ExpanderSetVersionSettingsHeader">
                     <labs:SettingsExpander.HeaderIcon>
                         <FontIcon Glyph="&#xE8b7;" />
                     </labs:SettingsExpander.HeaderIcon>
@@ -64,7 +64,7 @@
                     </labs:SettingsExpander.Items>
                 </labs:SettingsExpander>
                 <!--Java-->
-                <labs:SettingsExpander Grid.Row="1" Margin="20,20,20,20" x:Uid="RoutinePage_ExpanderSetJavaSettingsHeader">
+                <labs:SettingsExpander Grid.Row="1" Margin="20,5" x:Uid="RoutinePage_ExpanderSetJavaSettingsHeader">
                     <labs:SettingsExpander.HeaderIcon>
                         <FontIcon Glyph="&#xECAA;" />
                     </labs:SettingsExpander.HeaderIcon>

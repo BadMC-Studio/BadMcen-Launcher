@@ -22,10 +22,10 @@ namespace BadMcen_Launcher.Models.CreateOrUse
     {
         //Get Path
         static PathCode pathCode = new PathCode();
-        //Create List
-        static List<string> MinecraftPath = new List<string>();
+
         //Get json path
         public static string MCPath = Path.Combine(pathCode.AppDataFolderPath, @"BadMC\BadMcen Launcher\Config\Settings\MCPath.json");
+        public static string JavaPath = Path.Combine(pathCode.AppDataFolderPath, @"BadMC\BadMcen Launcher\Config\Settings\JavaPath.json");
         public static string LaunchConfigPath = Path.Combine(pathCode.AppDataFolderPath, @"BadMC\BadMcen Launcher\Config\LaunchConfig.json");
         //Create json
         public void CreateJson()
@@ -33,6 +33,7 @@ namespace BadMcen_Launcher.Models.CreateOrUse
             if (Directory.Exists(Path.Combine(pathCode.AppDataFolderPath, @"BadMC\BadMcen Launcher\Config\Settings")))
             {
                 if (!File.Exists(MCPath)) File.Create(MCPath);
+                if (!File.Exists(JavaPath)) File.Create(JavaPath);
                 if (!File.Exists(LaunchConfigPath)) File.Create(LaunchConfigPath);
             }
            
@@ -41,28 +42,69 @@ namespace BadMcen_Launcher.Models.CreateOrUse
         //Use files
         //MCPath.json
         public class SetVersionPathJson
-        {
+        {        
+
+            //Create List
             
-            public async void DeleteJsonElement(string RemovePath)
+            public async static Task DeleteJsonElement(string RemovePath)
             {
-                MinecraftPath.Remove(RemovePath);
-                //Serialize
-                string writeJson = JsonSerializer.Serialize(MinecraftPath);
-                //Write Json
-                await File.WriteAllTextAsync(MCPath, writeJson);
-            }
-            
-            public async void WriteJson(string AddPath)
-            {
+                try
+                {
+                    string jsonString = await File.ReadAllTextAsync(MCPath);
+                    if (!string.IsNullOrWhiteSpace(jsonString))
+                    {
+                        List<string> JsonToList = JsonSerializer.Deserialize<List<string>>(jsonString);
+                        JsonToList.Remove(RemovePath);
+                        //Serialize
+                        string writeJson = JsonSerializer.Serialize(JsonToList);
+                        //Write Json
+                        await File.WriteAllTextAsync(MCPath, writeJson);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //ErrorToast
+                    AppToastNotification.ErrorToast("Error", LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonError"), ex.Message + "\n" + LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonErrorSubtitle"));
+                    File.WriteAllText(MCPath, string.Empty);
+                }
                 
-                //Add to string
-                MinecraftPath.Add(AddPath);
-                //String to json
-                string json = JsonSerializer.Serialize(MinecraftPath);
-                //Write to json
-                await File.WriteAllTextAsync(MCPath, json);
             }
-            public void ReadJson()
+            
+            public async static Task WriteJson(string AddPath)
+            {
+                try
+                {
+                    string jsonString = await File.ReadAllTextAsync(MCPath);
+                    if (!string.IsNullOrWhiteSpace(jsonString))
+                    {
+                        List<string> JsonToList = JsonSerializer.Deserialize<List<string>>(jsonString);
+                        //Add to string
+                        JsonToList.Add(AddPath);
+                        //String to json
+                        string json = JsonSerializer.Serialize(JsonToList);
+                        //Write to json
+                        await File.WriteAllTextAsync(MCPath, json);
+                    }
+                    else
+                    {
+                        List<string> JsonToList = new List<string>();
+                        //Add to string
+                        JsonToList.Add(AddPath);
+                        //String to json
+                        string json = JsonSerializer.Serialize(JsonToList);
+                        //Write to json
+                        await File.WriteAllTextAsync(MCPath, json);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    AppToastNotification.ErrorToast("Error", LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonError"), ex.Message + "\n" + LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonErrorSubtitle"));
+                    File.WriteAllText(MCPath, string.Empty);
+                }
+                
+                
+            }
+            public static List<String> ReadJson()
             {
                 //Read json
                 try
@@ -71,45 +113,66 @@ namespace BadMcen_Launcher.Models.CreateOrUse
                     if (!string.IsNullOrWhiteSpace(json))
                     {
                         List<string> JsonToList = JsonSerializer.Deserialize<List<string>>(json);
-                        MinecraftPath.Clear();
-                        foreach (string item in JsonToList)
-                        {
-                            SetVersionPathPage.Instance.SetVersionPathListView.Items.Add(item);
-                            MinecraftPath.Add(item);
-                        }
+                        return JsonToList;
                     }
                 }
                 catch (Exception ex)
                 {
-                    SystemToastNotification.ErrorToast(LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonError"), ex.Message);
+                    //ErrorToast
+                    AppToastNotification.ErrorToast("Error", LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonError"), ex.Message + "\n" + LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonErrorSubtitle"));
+                    File.WriteAllText(MCPath, string.Empty);
                 }
+                return null;
             }
 
         }
         //LaunchConfig.json
         public class LaunchInfo
         {
+            
             public static async void WriteJson(string AddDictionary, object AddWorth)
             {
-                Dictionary<string, object> dict = JsonSerializer.Deserialize<Dictionary<string, object>>(File.ReadAllText(LaunchConfigPath));
-                var JsonOptions = new JsonSerializerOptions
+                try
                 {
-                    WriteIndented = true,
-                };
-                //Add to string
-                var config = new Dictionary<string, object> { { AddDictionary, AddWorth } };
-                foreach (var item in dict)
-                {
-                    if (!config.ContainsKey(item.Key))
+                    string jsonString = await File.ReadAllTextAsync(LaunchConfigPath);
+                    var JsonOptions = new JsonSerializerOptions
                     {
-                        config.Add(item.Key, item.Value);
+                        WriteIndented = true,
+                    };
+                    if (string.IsNullOrEmpty(jsonString))
+                    {
+                        Dictionary<string, object> dict = new Dictionary<string, object>();
+                        dict.Add(AddDictionary, AddWorth);
+                        string json = JsonSerializer.Serialize(dict, JsonOptions);
+                        //Write to json
+                        await File.WriteAllTextAsync(LaunchConfigPath, json);
                     }
-                    
+                    else
+                    {
+                        Dictionary<string, object> dict = JsonSerializer.Deserialize<Dictionary<string, object>>(jsonString);
+                        //Add to string
+                        var config = new Dictionary<string, object> { { AddDictionary, AddWorth } };
+                        foreach (var item in dict)
+                        {
+                            if (!config.ContainsKey(item.Key))
+                            {
+                                config.Add(item.Key, item.Value);
+                            }
+                            //String to json
+                            string json = JsonSerializer.Serialize(config, JsonOptions);
+                            //Write to json
+                            await File.WriteAllTextAsync(LaunchConfigPath, json);
+                        }
+                    }
                 }
-                //String to json
-                string json = JsonSerializer.Serialize(config, JsonOptions);
-                //Write to json
-                await File.WriteAllTextAsync(LaunchConfigPath, json);
+                catch (Exception ex)
+                {
+                    //ErrorToast
+                    AppToastNotification.ErrorToast("Error", LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonError"), ex.Message + "\n" + LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonErrorSubtitle"));
+                    File.WriteAllText(LaunchConfigPath, string.Empty);
+                }
+                
+                
                 
             }
             //Read json
@@ -132,18 +195,108 @@ namespace BadMcen_Launcher.Models.CreateOrUse
                         else
                         {
                             return null;
-                            
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    AppToastNotification.ErrorToast("Error", LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonError"), ex.Message);
+                    //ErrorToast
+                    AppToastNotification.ErrorToast("Error", LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonError"), ex.Message + "\n" + LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonErrorSubtitle"));
+                    File.WriteAllText(LaunchConfigPath, string.Empty);
                 }
                 return null;
             }
             
         }
-        
+
+        public class SetJavaPathJson
+        {
+            public static async Task WriteJson(string AddPath)
+            {
+                try
+                {
+                    var JsonOptions = new JsonSerializerOptions
+                    {
+                        WriteIndented = true,
+                    };
+                    string jsonString = await File.ReadAllTextAsync(JavaPath);
+                    if (!string.IsNullOrWhiteSpace(jsonString))
+                    {
+                        List<string> JsonToList = JsonSerializer.Deserialize<List<string>>(jsonString);
+                        //Add to string
+                        JsonToList.Add(AddPath);
+                        JsonToList = JsonToList.Distinct().ToList();
+
+                        //String to json
+                        string json = JsonSerializer.Serialize(JsonToList.Distinct(), JsonOptions);
+                        //Write to json
+                        await File.WriteAllTextAsync(JavaPath, json);
+                    }
+                    else
+                    {
+
+                        List<string> JsonToList = new List<string>();
+                        //Add to string
+                        JsonToList.Add(AddPath);
+                        //String to json
+                        string json = JsonSerializer.Serialize(JsonToList.Distinct(), JsonOptions);
+                        //Write to json
+                        await File.WriteAllTextAsync(JavaPath, json);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    AppToastNotification.ErrorToast("Error", LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonError"), ex.Message + "\n" + LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonErrorSubtitle"));
+                    File.WriteAllText(MCPath, string.Empty);
+                }
+            }
+            public static List<String> ReadJson()
+            {
+                //Read json
+                try
+                {
+                    string json = File.ReadAllText(JavaPath);
+                    if (!string.IsNullOrWhiteSpace(json))
+                    {
+                        List<string> JsonToList = JsonSerializer.Deserialize<List<string>>(json);
+                        return JsonToList;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //ErrorToast
+                    AppToastNotification.ErrorToast("Error", LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonError"), ex.Message + "\n" + LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonErrorSubtitle"));
+                    File.WriteAllText(JavaPath, string.Empty);
+                }
+                return null;
+            }
+            public async static Task DeleteJsonElement(string RemovePath)
+            {
+                try
+                {
+                    string jsonString = await File.ReadAllTextAsync(JavaPath);
+                    if (!string.IsNullOrWhiteSpace(jsonString))
+                    {
+                        var JsonOptions = new JsonSerializerOptions
+                        {
+                            WriteIndented = true,
+                        };
+                        List<string> JsonToList = JsonSerializer.Deserialize<List<string>>(jsonString);
+                        JsonToList.Remove(RemovePath);
+                        //Serialize
+                        string writeJson = JsonSerializer.Serialize(JsonToList, JsonOptions);
+                        //Write Json
+                        await File.WriteAllTextAsync(JavaPath, writeJson);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //ErrorToast
+                    AppToastNotification.ErrorToast("Error", LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonError"), ex.Message + "\n" + LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonErrorSubtitle"));
+                    File.WriteAllText(JavaPath, string.Empty);
+                }
+
+            }
+        }
     }
 }

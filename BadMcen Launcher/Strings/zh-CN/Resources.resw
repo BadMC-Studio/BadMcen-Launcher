@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ErrorMessageTitle" xml:space="preserve">
+    <value>啊呀！Σ(っ °Д °;)っ</value>
+  </data>
   <data name="HomePage_Search.PlaceholderText" xml:space="preserve">
     <value>搜索任何你想要的......</value>
   </data>
@@ -207,6 +210,9 @@
   <data name="RoutinePage_Header.Text" xml:space="preserve">
     <value>常规</value>
   </data>
+  <data name="SetJavaPathPage_InfoMessageSubTitle" xml:space="preserve">
+    <value>个Java已搜索到，除重复项（如果有），它们已被添加。</value>
+  </data>
   <data name="SettingsPage_MenuItems1.Content" xml:space="preserve">
     <value>游戏设置</value>
   </data>
@@ -222,8 +228,11 @@
   <data name="SetVersionPathPage_ErrorMessage03" xml:space="preserve">
     <value>你没有选中任何.minecraft文件夹！</value>
   </data>
-  <data name="SetVersionPathPage_ErrorMessageTitle" xml:space="preserve">
-    <value>啊呀！Σ(っ °Д °;)っ</value>
+  <data name="SetVersionPathPage_NotJavaPath.Text" xml:space="preserve">
+    <value>这里什么都没有.</value>
+  </data>
+  <data name="SetVersionPathPage_NotVersionPath.Text" xml:space="preserve">
+    <value>这里什么都没有.</value>
   </data>
   <data name="SetVersionPathPage_SuccessMessage01" xml:space="preserve">
     <value>1个.minecraft文件夹添加成功！</value>
@@ -231,7 +240,7 @@
   <data name="SetVersionPathPage_SuccessMessage02" xml:space="preserve">
     <value>一个.minecraft文件夹被删除.（本体仍然存在）</value>
   </data>
-  <data name="SetVersionPathPage_SuccessMessageTitle" xml:space="preserve">
+  <data name="SuccessMessageTitle" xml:space="preserve">
     <value>成功！</value>
   </data>
   <data name="Toast_ErrorToastSubTitle" xml:space="preserve">
@@ -242,5 +251,8 @@
   </data>
   <data name="Toast_ErrorToast_ReadJsonError" xml:space="preserve">
     <value>BadMcen Launcher捕获到的异常</value>
+  </data>
+  <data name="Toast_ErrorToast_ReadJsonErrorSubtitle" xml:space="preserve">
+    <value>为了安全起见，已清除Json里的内容.</value>
   </data>
 </root>

@@ -38,11 +38,24 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
             this.InitializeComponent();
             Instance = this;
             setVersionPathdialog = SetVersionPathdialog;
-            SetVersionPathJson setVersionPathJson = new SetVersionPathJson();
-            setVersionPathJson.ReadJson();
+            ReadList();
+
+
             ListViewIsOrIsNotEmpty();
 
 
+        }
+        private void ReadList()
+        {
+            if (SetVersionPathJson.ReadJson() != null)
+            {
+                foreach (string item in SetVersionPathJson.ReadJson())
+                {
+                    SetVersionPathPage.Instance.SetVersionPathListView.Items.Add(item);
+
+                }
+            }
+            
         }
         private void ListViewIsOrIsNotEmpty()
         {
@@ -58,18 +71,20 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
             }
         }
 
-        private void ErrorMessage()
+        private void ErrorMessage(string MessageTitle)
         {
             SetVersionPathMessage.Severity = InfoBarSeverity.Error;
-            SetVersionPathMessage.Title = LanguageLoader.resourceLoader.GetString("SetVersionPathPage_ErrorMessageTitle");
+            SetVersionPathMessage.Title = LanguageLoader.resourceLoader.GetString("ErrorMessageTitle");
             SetVersionPathMessage.IsOpen = true;
+            SetVersionPathMessage.Message = MessageTitle;
         }
 
-        private void SuccessMessage()
+        private void SuccessMessage(string MessageTitle)
         {
             SetVersionPathMessage.Severity = InfoBarSeverity.Success;
-            SetVersionPathMessage.Title = LanguageLoader.resourceLoader.GetString("SetVersionPathPage_SuccessMessageTitle");
+            SetVersionPathMessage.Title = LanguageLoader.resourceLoader.GetString("SuccessMessageTitle");
             SetVersionPathMessage.IsOpen = true;
+            SetVersionPathMessage.Message = MessageTitle;
         }
 
         
@@ -93,41 +108,34 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
             }
             else if (SetVersionPathListView.Items.Contains(folder.Path))
             {
-                SetVersionPathMessage.Message = LanguageLoader.resourceLoader.GetString("SetVersionPathPage_ErrorMessage01");
-                ErrorMessage();
+                ErrorMessage(LanguageLoader.resourceLoader.GetString("InfoMessageTitle"));
             }
             else if (folder.Name != ".minecraft")
             {
-                SetVersionPathMessage.Message = LanguageLoader.resourceLoader.GetString("SetVersionPathPage_ErrorMessage02");
-                ErrorMessage();
+                ErrorMessage(LanguageLoader.resourceLoader.GetString("ErrorMessageTitle"));
             }
             else if (folder.Name == ".minecraft")
             {
                 SetVersionPathListView.Items.Add(folder.Path);
-                SetVersionPathJson setVersionPathJson = new SetVersionPathJson();
-                setVersionPathJson.WriteJson(folder.Path);
+                await SetVersionPathJson.WriteJson(folder.Path);
                 ListViewIsOrIsNotEmpty();
-                SetVersionPathMessage.Message = LanguageLoader.resourceLoader.GetString("SetVersionPathPage_SuccessMessage01");
-                SuccessMessage();
+                SuccessMessage(LanguageLoader.resourceLoader.GetString("SuccessMessageTitle"));
             }
         }
         //Delete path
-        private void DeleteMinecraftPathClick(object sender, RoutedEventArgs e)
+        private async void DeleteMinecraftPathClick(object sender, RoutedEventArgs e)
         {
             if (SetVersionPathListView.SelectedIndex != -1)
             {
-                SetVersionPathJson setVersionPathJson = new SetVersionPathJson();
-                setVersionPathJson.DeleteJsonElement(SetVersionPathListView.SelectedItems[0].ToString());
+                await SetVersionPathJson.DeleteJsonElement(SetVersionPathListView.SelectedItems[0].ToString());
                 SetVersionPathListView.Items.RemoveAt(SetVersionPathListView.SelectedIndex);
                 setVersionPathdialog.IsPrimaryButtonEnabled = false;
                 ListViewIsOrIsNotEmpty();
-                SetVersionPathMessage.Message = LanguageLoader.resourceLoader.GetString("SetVersionPathPage_SuccessMessage02");
-                SuccessMessage();
+                SuccessMessage(LanguageLoader.resourceLoader.GetString("SetVersionPathPage_SuccessMessage02"));
             }
             else
             {
-                SetVersionPathMessage.Message = LanguageLoader.resourceLoader.GetString("SetVersionPathPage_ErrorMessage03");
-                ErrorMessage();
+                ErrorMessage(LanguageLoader.resourceLoader.GetString("SetVersionPathPage_ErrorMessage03"));
             }
         }
 

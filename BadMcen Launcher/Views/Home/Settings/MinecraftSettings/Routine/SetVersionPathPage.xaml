@@ -16,7 +16,7 @@
                 <ScalarTransition/>
             </FontIcon.OpacityTransition>
             </FontIcon>
-        <TextBlock Text="这里什么都没有." x:Name="NullTextBlock" Opacity="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="140" Foreground="{ThemeResource TextFillColorSecondaryBrush}">
+        <TextBlock x:Uid="SetVersionPathPage_NotVersionPath" Text="这里什么都没有." x:Name="NullTextBlock" Opacity="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="140" Foreground="{ThemeResource TextFillColorSecondaryBrush}">
         <TextBlock.OpacityTransition>
             <ScalarTransition />
         </TextBlock.OpacityTransition>
@@ -38,7 +38,7 @@
         </Button>
         <!--Delete.minecraftPath-->
         <Button HorizontalAlignment="Right" Height="40" Width="40" Margin="0,15,100,0" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Click="DeleteMinecraftPathClick">
-            <FontIcon FontSize="16" Glyph="&#xE74D;" Foreground="Red"/>
+            <FontIcon FontSize="16" Glyph="&#xE74D;" Foreground="{ThemeResource SystemFillColorCriticalBrush}"/>
         </Button>
         
         <!--.minecraftPath-->

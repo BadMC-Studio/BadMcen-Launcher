@@ -52,7 +52,10 @@ namespace BadMcen_Launcher
             var ScreenHeight = DisplayArea.Primary.WorkArea.Height;
             var ScreenWidth = DisplayArea.Primary.WorkArea.Width;
             //Set the window drag area
-            AppWindow.TitleBar.SetDragRectangles(new RectInt32[]{new RectInt32(800, 0, ScreenWidth - 80, 40)});
+            IntPtr hWndMain = WinRT.Interop.WindowNative.GetWindowHandle(this);
+            Microsoft.UI.WindowId myWndId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWndMain);
+            var incps = Microsoft.UI.Input.InputNonClientPointerSource.GetForWindowId(myWndId);
+            incps.SetRegionRects(Microsoft.UI.Input.NonClientRegionKind.Caption, new RectInt32[] { new RectInt32(80, 0, ScreenWidth - 80, 40) });
             //Set the window width and height and the position of the screen.
             m_appWindow.MoveAndResize(new RectInt32(ScreenWidth - ScreenWidth / 2 - 1100 / 2, (int)(ScreenHeight - ScreenHeight / 2 - 650 / 2), 1100, 650));
             //Set TitleBar title
