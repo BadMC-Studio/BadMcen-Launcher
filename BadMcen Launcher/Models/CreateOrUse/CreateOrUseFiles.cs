@@ -15,6 +15,7 @@ using static BadMcen_Launcher.Models.Definition;
 using Windows.System;
 using Microsoft.Toolkit.Uwp.Notifications;
 using BadMcen_Launcher.Models.ToastNotifications;
+using System.Text.Encodings.Web;
 
 namespace BadMcen_Launcher.Models.CreateOrUse
 {
@@ -280,6 +281,7 @@ namespace BadMcen_Launcher.Models.CreateOrUse
                         var JsonOptions = new JsonSerializerOptions
                         {
                             WriteIndented = true,
+                            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
                         };
                         List<string> JsonToList = JsonSerializer.Deserialize<List<string>>(jsonString);
                         JsonToList.Remove(RemovePath);

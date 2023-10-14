@@ -210,8 +210,14 @@
   <data name="RoutinePage_Header.Text" xml:space="preserve">
     <value>常规</value>
   </data>
+  <data name="SetJavaPathPage_ErrorMessage03" xml:space="preserve">
+    <value>你没有选中任何Java！</value>
+  </data>
   <data name="SetJavaPathPage_InfoMessageSubTitle" xml:space="preserve">
     <value>个Java已搜索到，除重复项（如果有），它们已被添加。</value>
+  </data>
+  <data name="SetJavaPathPage_SuccessMessage02" xml:space="preserve">
+    <value>一个Java被删除.</value>
   </data>
   <data name="SettingsPage_MenuItems1.Content" xml:space="preserve">
     <value>游戏设置</value>
