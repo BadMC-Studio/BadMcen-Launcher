@@ -2,12 +2,19 @@ using BadMcen_Launcher.Models.CreateOrUse;
 using BadMcen_Launcher.Models.MinecraftLaunchCode;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Documents;
+using MinecraftLaunch.Modules.Enum;
 using MinecraftLaunch.Modules.Models.Launch;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.Storage;
+using Windows.Storage.Pickers;
+using WinRT.Interop;
+using static BadMcen_Launcher.Models.CreateOrUse.CreateOrUseFiles;
 using static BadMcen_Launcher.Models.Definition;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -26,11 +33,6 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
             this.InitializeComponent();
             setJavaPathdialog = SetJavaPathdialog;
             ListViewIsOrIsNotEmpty();
-        }
-
-        private void DownloadJavaClick(object sender, RoutedEventArgs e)
-        {
-
         }
         private void ListViewIsOrIsNotEmpty()
         {
@@ -61,10 +63,84 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
             SetJavaPathMessage.Message = MessageTitle;
         }
 
+        private async void GetJavaClick(object sender, RoutedEventArgs e)
+        {
+            if (GetJavaComboBox.SelectedIndex != -1)
+            {
+                // Create a folder picker
+                FolderPicker openPicker = new Windows.Storage.Pickers.FolderPicker();
+                // Retrieve the window handle (HWND) of the current WinUI 3 window.
+                var hwnd = WindowNative.GetWindowHandle(App.MainWindow);
+                WinRT.Interop.InitializeWithWindow.Initialize(openPicker, hwnd);
 
+                // Set options for your folder picker
+                openPicker.SuggestedStartLocation = PickerLocationId.Desktop;
+
+                // Open the picker for the user to pick a folder
+                StorageFolder ReturnFolder = await openPicker.PickSingleFolderAsync();
+                if (ReturnFolder != null)
+                {
+                    switch (GetJavaComboBox.SelectedItem)
+                    {
+                        case "OpenJDK 8":
+                            await Java.GetJava(JdkDownloadSource.JdkJavaNet, OpenJdkType.OpenJdk8, ReturnFolder.Path);
+                            break;
+                        case "OpenJDK 11":
+                            await Java.GetJava(JdkDownloadSource.JdkJavaNet, OpenJdkType.OpenJdk11, ReturnFolder.Path);
+                            break;
+                        case "OpenJDK 17":
+                            await Java.GetJava(JdkDownloadSource.JdkJavaNet, OpenJdkType.OpenJdk17, ReturnFolder.Path);
+                            break;
+                        case "OpenJDK 18":
+                            await Java.GetJava(JdkDownloadSource.JdkJavaNet, OpenJdkType.OpenJdk18, ReturnFolder.Path);
+                            break;
+                    }
+                }
+            }
+            else
+            {
+                ErrorMessage(LanguageLoader.resourceLoader.GetString("SetJavaPathPage_ErrorMessage06"));
+            }
+            
+        }
         //File picker
         private async void SetJavaPathPicker(object sender, RoutedEventArgs e)
         {
+            // Create a file picker
+            var openPicker = new Windows.Storage.Pickers.FileOpenPicker();
+
+            // Retrieve the window handle (HWND) of the current WinUI 3 window.
+            var hwnd = WindowNative.GetWindowHandle(App.MainWindow);
+            // Initialize the file picker with the window handle (HWND).
+            WinRT.Interop.InitializeWithWindow.Initialize(openPicker, hwnd);
+
+            // Set options for your file picker
+            openPicker.ViewMode = PickerViewMode.Thumbnail;
+            openPicker.FileTypeFilter.Add(".exe");
+
+
+            // Open the picker for the user to pick a file
+            var ReturnFile = await openPicker.PickSingleFileAsync();
+            if (ReturnFile?.Name == "javaw.exe")
+            {
+                if (SetJavaPathListView.Items.Any(Rf => (Rf as JavaView).JavaPath.Contains(ReturnFile.Path)))
+                {
+                    ErrorMessage(LanguageLoader.resourceLoader.GetString("SetJavaPathPage_ErrorMessage05"));
+                }
+                else
+                {
+                    JavaInfo javaInfo = MinecraftLaunch.Modules.Utils.JavaUtil.GetJavaInfo(ReturnFile.Path);
+                    SetJavaPathListView.Items.Add(new JavaView($"Java{javaInfo.JavaVersion} {(javaInfo.Is64Bit ? "- 64bit" : "- 32bit")}", ReturnFile.Path));
+                    //Close text
+                    ListViewIsOrIsNotEmpty();
+                    await SetJavaPathJson.WriteJson(ReturnFile.Path);
+                }
+
+            }
+            else if (ReturnFile != null && ReturnFile?.Name != "javaw.exe")
+            {
+                ErrorMessage(LanguageLoader.resourceLoader.GetString("SetJavaPathPage_ErrorMessage04"));
+            }
 
         }
         //Delete path
@@ -74,7 +150,7 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
             if (SetJavaPathListView.SelectedIndex != -1)
             {
                 //Delete from Json
-                await CreateOrUseFiles.SetJavaPathJson.DeleteJsonElement((SetJavaPathListView.SelectedItem as JavaView).JavaPath);//这里除了问题ok
+                await CreateOrUseFiles.SetJavaPathJson.DeleteJsonElement((SetJavaPathListView.SelectedItem as JavaView).JavaPath);
                 //Delete from ListView
                 SetJavaPathListView.Items.RemoveAt(SetJavaPathListView.SelectedIndex);
                 //Done button becomes disabled
@@ -130,7 +206,6 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
                 //Write to Json
                 await CreateOrUseFiles.SetJavaPathJson.WriteJson(javalist.JavaPath);
             }
-            Trace.WriteLine(SetJavaPathListView.Items.Count);
 
             //Pop-up message
             SuccessMessage($"{javaList.Count()}{LanguageLoader.resourceLoader.GetString("SetJavaPathPage_InfoMessageSubTitle")}");
@@ -150,5 +225,7 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
                 JavaName = name;
             }
         }
+
+        
     }
 }

@@ -20,11 +20,11 @@
                     <CornerRadius x:Key="ControlCornerRadius">0</CornerRadius>
                 </Button.Resources>
                 <Button.Background>
-                    <ImageBrush ImageSource="/Assets/Logos/Square44x44Logo.scale-400.png" />
+                    <ImageBrush ImageSource="/Assets/Logos/Square44x44Logo.scale-400.png"/>
                 </Button.Background>
             </Button>
             <!--TaskButton-->
-            <Button x:Name="TaskButton" Margin="40,0,0,0"  Width="40" Height="40" Background="#00FFFFFF" BorderBrush="#00FFFFFF" VerticalAlignment="Center" BorderThickness="0">
+            <Button x:Name="TaskButton" Margin="40,0,0,0"  Width="40" Height="40" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center" BorderThickness="0" Click="TaskManagerClick">
                 <Button.Resources>
                     <CornerRadius x:Key="ControlCornerRadius">0</CornerRadius>
                 </Button.Resources>
@@ -35,6 +35,13 @@
         </Grid>
         <!--View-->
         <Frame x:Name="MainFrame" x:FieldModifier="public" Grid.Row="1">
+            <Frame.ContentTransitions>
+                <TransitionCollection>
+                    <NavigationThemeTransition/>
+                </TransitionCollection>
+            </Frame.ContentTransitions>
+        </Frame>
+        <Frame x:Name="TaskAndWidgetsFrame" x:FieldModifier="public" Grid.Row="1">
             <Frame.ContentTransitions>
                 <TransitionCollection>
                     <NavigationThemeTransition/>

@@ -1,4 +1,4 @@
-﻿using Microsoft.Toolkit.Uwp.Notifications;
+﻿using CommunityToolkit.WinUI.Notifications;
 using Microsoft.UI;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Windowing;
@@ -44,7 +44,7 @@ namespace BadMcen_Launcher
         public App()
         {
             this.InitializeComponent();
-            Microsoft.Toolkit.Uwp.Notifications.ToastNotificationManagerCompat.OnActivated += ToastNotificationManagerCompat_OnActivated;
+            ToastNotificationManagerCompat.OnActivated += ToastNotificationManagerCompat_OnActivated;
             ApplicationLanguages.PrimaryLanguageOverride = "zh-CN";
         }
 
@@ -65,9 +65,9 @@ namespace BadMcen_Launcher
             AppWindow.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;  
         }
 
-        private static void ToastNotificationManagerCompat_OnActivated(Microsoft.Toolkit.Uwp.Notifications.ToastNotificationActivatedEventArgsCompat e)
+        private static void ToastNotificationManagerCompat_OnActivated(ToastNotificationActivatedEventArgsCompat e)
         {
-            var ToastClickArgs = Microsoft.Toolkit.Uwp.Notifications.ToastArguments.Parse(e.Argument);
+            var ToastClickArgs = ToastArguments.Parse(e.Argument);
             if (ToastClickArgs.Count > 0)
             {
                 foreach (var ToastClickItem in ToastClickArgs)

@@ -13,7 +13,6 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Email;
 using static BadMcen_Launcher.Models.Definition;
 using Windows.System;
-using Microsoft.Toolkit.Uwp.Notifications;
 using BadMcen_Launcher.Models.ToastNotifications;
 using System.Text.Encodings.Web;
 
@@ -182,20 +181,20 @@ namespace BadMcen_Launcher.Models.CreateOrUse
                 //Read json and deserialize it.
                 try
                 {
-                    Dictionary<string, object> dict = JsonSerializer.Deserialize<Dictionary<string, object>>(File.ReadAllText(LaunchConfigPath));
-                    if (!string.IsNullOrWhiteSpace(DictionaryKey))
+                    string ReadFile = File.ReadAllText(LaunchConfigPath);
+                    if (!string.IsNullOrEmpty(ReadFile))
                     {
-                        //Get the value of a specific key
-                        
-                        if (dict.TryGetValue(DictionaryKey, out var value))
+                        Dictionary<string, object> dict = JsonSerializer.Deserialize<Dictionary<string, object>>(ReadFile);
+                        if (!string.IsNullOrWhiteSpace(DictionaryKey))
                         {
-                            object ReturnValue = value;
-                            //Return to Dictionary
-                            return ReturnValue;
-                        }
-                        else
-                        {
-                            return null;
+                            //Get the value of a specific key
+
+                            if (dict.TryGetValue(DictionaryKey, out var value))
+                            {
+                                object ReturnValue = value;
+                                //Return to Dictionary
+                                return ReturnValue;
+                            }
                         }
                     }
                 }

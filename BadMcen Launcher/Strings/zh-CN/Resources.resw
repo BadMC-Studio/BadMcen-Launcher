@@ -165,6 +165,15 @@
   <data name="RoutinePage_ExpanderSetVersionPath03" xml:space="preserve">
     <value>取消</value>
   </data>
+  <data name="RoutinePage_ExpanderSetVersionPath04.Text" xml:space="preserve">
+    <value>你需要选择一个Java版本，然后点击安装.</value>
+  </data>
+  <data name="RoutinePage_ExpanderSetVersionPath05.Content" xml:space="preserve">
+    <value>各个版本之间有什么区别？</value>
+  </data>
+  <data name="RoutinePage_ExpanderSetVersionPath06.Content" xml:space="preserve">
+    <value>选择安装路径并下载</value>
+  </data>
   <data name="RoutinePage_ExpanderSetVersionPathContent01" xml:space="preserve">
     <value>未设置或发生错误(点击设置)</value>
   </data>
@@ -213,6 +222,15 @@
   <data name="SetJavaPathPage_ErrorMessage03" xml:space="preserve">
     <value>你没有选中任何Java！</value>
   </data>
+  <data name="SetJavaPathPage_ErrorMessage04" xml:space="preserve">
+    <value>这好像不是Java可执行程序......（是否选择的不是javaw.exe或java.exe？）</value>
+  </data>
+  <data name="SetJavaPathPage_ErrorMessage05" xml:space="preserve">
+    <value>列表里已经有了一个相同的Java.</value>
+  </data>
+  <data name="SetJavaPathPage_ErrorMessage06" xml:space="preserve">
+    <value>你需要选择一个Java才能继续.</value>
+  </data>
   <data name="SetJavaPathPage_InfoMessageSubTitle" xml:space="preserve">
     <value>个Java已搜索到，除重复项（如果有），它们已被添加。</value>
   </data>
@@ -226,7 +244,7 @@
     <value>常规</value>
   </data>
   <data name="SetVersionPathPage_ErrorMessage01" xml:space="preserve">
-    <value>你选择的.minecraft文件夹重复了:(</value>
+    <value>列表里已经有了一个相同的.minecraft文件夹.</value>
   </data>
   <data name="SetVersionPathPage_ErrorMessage02" xml:space="preserve">
     <value>你选择的文件夹好像不是.minecraft文件夹(是否需要点击+创建一个？)</value>

@@ -21,6 +21,11 @@ using static BadMcen_Launcher.Models.Definition;
 using BadMcen_Launcher.Models.CreateOrUse;
 using BadMcen_Launcher.Views;
 using static BadMcen_Launcher.Models.CreateOrUse.CreateOrUseFiles;
+using BadMcen_Launcher.Views.TitleBar.TaskManager;
+using Microsoft.UI.Xaml.Media.Animation;
+using BadMcen_Launcher.Views.Home;
+using BadMcen_Launcher.Views.SetVersion;
+using BadMcen_Launcher.Views.TitleBar.Widgets;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -86,16 +91,17 @@ namespace BadMcen_Launcher
             PathCode pathCode = new PathCode();
             string folders = Path.Combine(pathCode.AppDataFolderPath, @"BadMC\BadMcen Launcher\Wallpaper");
             
-            string WallPaperMode = "MicaWallpaper";
+            string WallPaperMode = "StaticWallpaper";
             switch (WallPaperMode)
             {
                 //Set wallpapers as static
                 case "StaticWallpaper":
-                    string file = Path.Combine(folders, "skyblock3 (1).jpg");
+                    string file = Path.Combine(folders, "Œﬁ±ÍÃ‚ (2).png");
                     if (File.Exists(file))
                     {
                         ImageBrush brush = new ImageBrush();
                         brush.ImageSource = new BitmapImage(new Uri(file));
+                        brush.Stretch = Stretch.Fill;
                         MainFrame.Background = brush;
                     }
                     break;
@@ -108,6 +114,7 @@ namespace BadMcen_Launcher
                         string randomFile = files[random.Next(files.Length)];
                         ImageBrush brush = new ImageBrush();
                         brush.ImageSource = new BitmapImage(new Uri(randomFile));
+                        brush.Stretch = Stretch.Fill;
                         MainFrame.Background = brush;
                     }
                     break;
@@ -147,6 +154,19 @@ namespace BadMcen_Launcher
                     break;
             }
 
+        }
+
+        private void TaskManagerClick(object sender, RoutedEventArgs e)
+        {
+            if (TaskAndWidgetsFrame.Content == null || TaskAndWidgetsFrame.Content.GetType() == typeof(MainWidgets))
+            {
+                TaskAndWidgetsFrame.Navigate(typeof(MainTaskManager), null, new DrillInNavigationTransitionInfo());
+            }
+            else if (TaskAndWidgetsFrame.Content.GetType() == typeof(MainTaskManager))
+            {
+                TaskAndWidgetsFrame.Content = null;
+            }
+            
         }
     }
 

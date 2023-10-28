@@ -14,7 +14,7 @@
             <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <AutoSuggestBox x:Uid="HomePage_Search" Grid.Row="0" Height="35" Margin="20,20,130,0" FontSize="15" FontFamily="Microsoft YaHei UI"/>
+        <AutoSuggestBox x:Uid="HomePage_Search" Grid.Row="0" Height="35" Margin="20,20,130,0" FontSize="15"/>
         <!--Setting-->
         <Button Grid.Row="0" Height="50" Width="50" Margin="0,25,20,0" VerticalAlignment="Top" HorizontalAlignment="Right" BorderBrush="Transparent" Background="Transparent" Click="Setting_Click">
             <AnimatedIcon x:Name='AnimatedIcon'>

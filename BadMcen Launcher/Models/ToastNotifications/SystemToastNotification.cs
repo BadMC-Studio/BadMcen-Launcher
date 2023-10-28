@@ -1,4 +1,4 @@
-﻿using Microsoft.Toolkit.Uwp.Notifications;
+﻿using CommunityToolkit.WinUI.Notifications;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +12,7 @@ namespace BadMcen_Launcher.Models.ToastNotifications
     {
         public static void ErrorToast(string Subtitle, string ErrorTitle)
         {
-            var e = new Microsoft.Toolkit.Uwp.Notifications.ToastContentBuilder();
+            var e = new ToastContentBuilder();
             e.AddArgument("action", "viewConversation");
             e.AddArgument("conversationId", 9813);
             e.AddText(LanguageLoader.resourceLoader.GetString("Toast_ErrorToastTitle"));

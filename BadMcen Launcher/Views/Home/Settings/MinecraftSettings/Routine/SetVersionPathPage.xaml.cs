@@ -108,18 +108,18 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
             }
             else if (SetVersionPathListView.Items.Contains(folder.Path))
             {
-                ErrorMessage(LanguageLoader.resourceLoader.GetString("InfoMessageTitle"));
+                ErrorMessage(LanguageLoader.resourceLoader.GetString("SetVersionPathPage_ErrorMessage01"));
             }
             else if (folder.Name != ".minecraft")
             {
-                ErrorMessage(LanguageLoader.resourceLoader.GetString("ErrorMessageTitle"));
+                ErrorMessage(LanguageLoader.resourceLoader.GetString("SetVersionPathPage_ErrorMessage02"));
             }
             else if (folder.Name == ".minecraft")
             {
                 SetVersionPathListView.Items.Add(folder.Path);
                 await SetVersionPathJson.WriteJson(folder.Path);
                 ListViewIsOrIsNotEmpty();
-                SuccessMessage(LanguageLoader.resourceLoader.GetString("SuccessMessageTitle"));
+                SuccessMessage(LanguageLoader.resourceLoader.GetString("SetVersionPathPage_SuccessMessage01"));
             }
         }
         //Delete path
