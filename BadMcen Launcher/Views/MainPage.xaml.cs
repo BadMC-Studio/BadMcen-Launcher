@@ -24,6 +24,8 @@ using MinecraftLaunch.Modules.Enum;
 using MinecraftLaunch.Modules.Installer;
 using System.Diagnostics;
 using Microsoft.UI;
+using MinecraftLaunch.Modules.Models.Launch;
+using MinecraftLaunch.Modules.Utilities;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -84,9 +86,8 @@ namespace BadMcen_Launcher.Views
             }
         }
 
-        private async void LaunchMCClick(object sender, RoutedEventArgs e)
+        private void LaunchMCInfoClick(object sender, RoutedEventArgs e)
         {
-            
 
         }
         

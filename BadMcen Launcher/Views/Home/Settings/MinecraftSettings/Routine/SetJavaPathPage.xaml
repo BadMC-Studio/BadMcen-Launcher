@@ -33,11 +33,10 @@
                     <StackPanel Spacing="10" HorizontalAlignment="Center">
                         <TextBlock Style="{ThemeResource BaseTextBlockStyle}" x:Uid="RoutinePage_ExpanderSetVersionPath04" />
                         <ComboBox HorizontalAlignment="Stretch" Margin="20, 0, 20, 0" x:Name="GetJavaComboBox" Text="123456789">
-                                <x:String>OpenJDK 8</x:String>
-                                <x:String>OpenJDK 11</x:String>
-                                <x:String>OpenJDK 17</x:String>
-                                <x:String>OpenJDK 18</x:String>
-                            </ComboBox>
+                            <x:String>OpenJDK 8</x:String>
+                            <x:String>OpenJDK 16</x:String>
+                            <x:String>OpenJDK 17</x:String>
+                        </ComboBox>
                         <StackPanel Orientation="Horizontal" Spacing="10">
                             <HyperlinkButton x:Uid="RoutinePage_ExpanderSetVersionPath05"/>
                             <Button Style="{StaticResource AccentButtonStyle}" HorizontalAlignment="Right" x:Uid="RoutinePage_ExpanderSetVersionPath06" Click="GetJavaClick"/>

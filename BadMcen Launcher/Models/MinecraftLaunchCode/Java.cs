@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Flurl.Util;
-using MinecraftLaunch;
-using MinecraftLaunch.Modules.Enum;
+using System.Xml.Linq;
+using BadMcen_Launcher.Controls.AppToast;
+using Microsoft.UI.Dispatching;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Data;
 using MinecraftLaunch.Modules.Installer;
 using MinecraftLaunch.Modules.Models.Launch;
-using MinecraftLaunch.Modules.Utils;
+using MinecraftLaunch.Modules.Utilities;
+using Windows.ApplicationModel.Core;
+using Windows.UI.Core;
+using static BadMcen_Launcher.Controls.AppToast.ProgressToast;
+using static BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine.SetJavaPathPage;
 
 namespace BadMcen_Launcher.Models.MinecraftLaunchCode
 {
@@ -23,27 +27,30 @@ namespace BadMcen_Launcher.Models.MinecraftLaunchCode
             {
                 return JavaList;
             }
+            
 
             return null;
         }
-        public static async Task<string> GetJava(JdkDownloadSource JDKSource, OpenJdkType JDKType, string DownloadPath)
+        public async Task GetJava(string DownloadPath, DownloadJavaInfo InstallJavaInfo)
         {
-            JavaInstaller installer = new(JDKSource, JDKType, DownloadPath);
+            JavaInstaller installer = new(DownloadPath, InstallJavaInfo);
+            ProgressToast progressToast = new ProgressToast();
 
             installer.ProgressChanged += (_, x) =>
             {
-                Debug.WriteLine(x.Progress);
-                Debug.WriteLine(x.ProgressDescription);
+                progressToast.Progress = x.Progress * 100;
+                progressToast.ProgressDescription = x.ProgressDescription;
             };
-
             var result = await Task.Run(async () => await installer.InstallAsync());
+
             if (result.Success)
             {
+                progressToast.ToastHubTitle.Text = "a text";
                 Debug.WriteLine("Done!");
                 //下载完成后执行的代码块
             }
 
-            return null;
         }
+
     }
 }

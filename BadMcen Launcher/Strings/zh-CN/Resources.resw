@@ -126,6 +126,12 @@
   <data name="MainPage_LaunchButton.Text" xml:space="preserve">
     <value>启动Minecraft！</value>
   </data>
+  <data name="RoutinePage_ExpanderHelpLink.Content" xml:space="preserve">
+    <value>了解更多</value>
+  </data>
+  <data name="RoutinePage_ExpanderSetButtonContent01" xml:space="preserve">
+    <value>未设置或发生错误(点击设置)</value>
+  </data>
   <data name="RoutinePage_ExpanderSetJavaPath01" xml:space="preserve">
     <value>选择或下载一个Java</value>
   </data>
@@ -144,9 +150,6 @@
   <data name="RoutinePage_ExpanderSetJavaPathHelp01.Title" xml:space="preserve">
     <value>设置Java路径</value>
   </data>
-  <data name="RoutinePage_ExpanderSetJavaPathHelp02.Content" xml:space="preserve">
-    <value>了解更多</value>
-  </data>
   <data name="RoutinePage_ExpanderSetJavaPathHelp02.NavigateUri" xml:space="preserve">
     <value />
   </data>
@@ -155,6 +158,15 @@
   </data>
   <data name="RoutinePage_ExpanderSetJavaSettingsHeader.Header" xml:space="preserve">
     <value>Java设置</value>
+  </data>
+  <data name="RoutinePage_ExpanderSetJVMMemoryHeader.Header" xml:space="preserve">
+    <value>Java 运行时内存</value>
+  </data>
+  <data name="RoutinePage_ExpanderSetJVMMemoryHelp01.Subtitle" xml:space="preserve">
+    <value>你的Java不会自动设置内存，所以你需要手动设置一个合适的内存，但是注意，你设置的内存过大或过小都可能导致游戏崩溃.</value>
+  </data>
+  <data name="RoutinePage_ExpanderSetJVMMemoryHelp01.Title" xml:space="preserve">
+    <value>设置Java运行时所需的最大内存和最小内存</value>
   </data>
   <data name="RoutinePage_ExpanderSetVersionPath01" xml:space="preserve">
     <value>选择一个.minecraft文件夹</value>
@@ -174,9 +186,6 @@
   <data name="RoutinePage_ExpanderSetVersionPath06.Content" xml:space="preserve">
     <value>选择安装路径并下载</value>
   </data>
-  <data name="RoutinePage_ExpanderSetVersionPathContent01" xml:space="preserve">
-    <value>未设置或发生错误(点击设置)</value>
-  </data>
   <data name="RoutinePage_ExpanderSetVersionPathHeader.Header" xml:space="preserve">
     <value>.minecraft 文件夹路径</value>
   </data>
@@ -185,9 +194,6 @@
   </data>
   <data name="RoutinePage_ExpanderSetVersionPathHelp01.Title" xml:space="preserve">
     <value>设置.minecraft文件夹路径.</value>
-  </data>
-  <data name="RoutinePage_ExpanderSetVersionPathHelp02.Content" xml:space="preserve">
-    <value>了解更多</value>
   </data>
   <data name="RoutinePage_ExpanderSetVersionPathHelp02.NavigateUri" xml:space="preserve">
     <value>https://minecraft.fandom.com/zh/wiki/.minecraft</value>
@@ -206,9 +212,6 @@
   </data>
   <data name="RoutinePage_ExpanderVersionIsolationHelp01.Title" xml:space="preserve">
     <value>将游戏资源隔离存放.</value>
-  </data>
-  <data name="RoutinePage_ExpanderVersionIsolationHelp02.Content" xml:space="preserve">
-    <value>了解更多</value>
   </data>
   <data name="RoutinePage_ExpanderVersionIsolationToggleSwitch.OffContent" xml:space="preserve">
     <value>关</value>
@@ -230,6 +233,9 @@
   </data>
   <data name="SetJavaPathPage_ErrorMessage06" xml:space="preserve">
     <value>你需要选择一个Java才能继续.</value>
+  </data>
+  <data name="SetJavaPathPage_InfoMessage01" xml:space="preserve">
+    <value>添加了一个新任务.</value>
   </data>
   <data name="SetJavaPathPage_InfoMessageSubTitle" xml:space="preserve">
     <value>个Java已搜索到，除重复项（如果有），它们已被添加。</value>
@@ -266,12 +272,6 @@
   </data>
   <data name="SuccessMessageTitle" xml:space="preserve">
     <value>成功！</value>
-  </data>
-  <data name="Toast_ErrorToastSubTitle" xml:space="preserve">
-    <value>详细信息：</value>
-  </data>
-  <data name="Toast_ErrorToastTitle" xml:space="preserve">
-    <value>BadMcen Launcher捕获到的异常</value>
   </data>
   <data name="Toast_ErrorToast_ReadJsonError" xml:space="preserve">
     <value>BadMcen Launcher捕获到的异常</value>

@@ -12,7 +12,7 @@
   <Identity
     Name="BadMC-BadMcenLauncher"
     Publisher="CN=BadMC"
-    Version="0.0.1.0" />
+    Version="0.0.2.0" />
 
   <mp:PhoneIdentity PhoneProductId="0a736e29-e435-45fe-8801-bc88ae9f729a" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 

@@ -64,7 +64,7 @@ namespace BadMcen_Launcher.Models.CreateOrUse
                 catch (Exception ex)
                 {
                     //ErrorToast
-                    AppToastNotification.ErrorToast("Error", LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonError"), ex.Message + "\n" + LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonErrorSubtitle"));
+                    AppToastNotification.AppInfoToast("Error", LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonError"), ex.Message + "\n" + LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonErrorSubtitle"));
                     File.WriteAllText(MCPath, string.Empty);
                 }
                 
@@ -98,7 +98,7 @@ namespace BadMcen_Launcher.Models.CreateOrUse
                 }
                 catch (Exception ex)
                 {
-                    AppToastNotification.ErrorToast("Error", LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonError"), ex.Message + "\n" + LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonErrorSubtitle"));
+                    AppToastNotification.AppInfoToast("Error", LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonError"), ex.Message + "\n" + LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonErrorSubtitle"));
                     File.WriteAllText(MCPath, string.Empty);
                 }
                 
@@ -119,7 +119,7 @@ namespace BadMcen_Launcher.Models.CreateOrUse
                 catch (Exception ex)
                 {
                     //ErrorToast
-                    AppToastNotification.ErrorToast("Error", LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonError"), ex.Message + "\n" + LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonErrorSubtitle"));
+                    AppToastNotification.AppInfoToast("Error", LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonError"), ex.Message + "\n" + LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonErrorSubtitle"));
                     File.WriteAllText(MCPath, string.Empty);
                 }
                 return null;
@@ -168,7 +168,7 @@ namespace BadMcen_Launcher.Models.CreateOrUse
                 catch (Exception ex)
                 {
                     //ErrorToast
-                    AppToastNotification.ErrorToast("Error", LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonError"), ex.Message + "\n" + LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonErrorSubtitle"));
+                    AppToastNotification.AppInfoToast("Error", LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonError"), ex.Message + "\n" + LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonErrorSubtitle"));
                     File.WriteAllText(LaunchConfigPath, string.Empty);
                 }
                 
@@ -201,7 +201,7 @@ namespace BadMcen_Launcher.Models.CreateOrUse
                 catch (Exception ex)
                 {
                     //ErrorToast
-                    AppToastNotification.ErrorToast("Error", LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonError"), ex.Message + "\n" + LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonErrorSubtitle"));
+                    AppToastNotification.AppInfoToast("Error", LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonError"), ex.Message + "\n" + LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonErrorSubtitle"));
                     File.WriteAllText(LaunchConfigPath, string.Empty);
                 }
                 return null;
@@ -246,7 +246,7 @@ namespace BadMcen_Launcher.Models.CreateOrUse
                 }
                 catch (Exception ex)
                 {
-                    AppToastNotification.ErrorToast("Error", LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonError"), ex.Message + "\n" + LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonErrorSubtitle"));
+                    AppToastNotification.AppInfoToast("Error", LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonError"), ex.Message + "\n" + LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonErrorSubtitle"));
                     File.WriteAllText(MCPath, string.Empty);
                 }
             }
@@ -265,7 +265,7 @@ namespace BadMcen_Launcher.Models.CreateOrUse
                 catch (Exception ex)
                 {
                     //ErrorToast
-                    AppToastNotification.ErrorToast("Error", LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonError"), ex.Message + "\n" + LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonErrorSubtitle"));
+                    AppToastNotification.AppInfoToast("Error", LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonError"), ex.Message + "\n" + LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonErrorSubtitle"));
                     File.WriteAllText(JavaPath, string.Empty);
                 }
                 return null;
@@ -293,7 +293,7 @@ namespace BadMcen_Launcher.Models.CreateOrUse
                 catch (Exception ex)
                 {
                     //ErrorToast
-                    AppToastNotification.ErrorToast("Error", LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonError"), ex.Message + "\n" + LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonErrorSubtitle"));
+                    AppToastNotification.AppInfoToast("Error", LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonError"), ex.Message + "\n" + LanguageLoader.resourceLoader.GetString("Toast_ErrorToast_ReadJsonErrorSubtitle"));
                     File.WriteAllText(JavaPath, string.Empty);
                 }
 

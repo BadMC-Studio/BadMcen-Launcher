@@ -85,12 +85,13 @@ namespace BadMcen_Launcher
             WindowId myWndId = Win32Interop.GetWindowIdFromWindow(hWnd);
             return Microsoft.UI.Windowing.AppWindow.GetFromWindowId(myWndId);
         }
+
         //SetWallpaper
         public void SetWallpaper()
         {
             PathCode pathCode = new PathCode();
             string folders = Path.Combine(pathCode.AppDataFolderPath, @"BadMC\BadMcen Launcher\Wallpaper");
-            
+
             string WallPaperMode = "StaticWallpaper";
             switch (WallPaperMode)
             {
@@ -153,7 +154,6 @@ namespace BadMcen_Launcher
                     }
                     break;
             }
-
         }
 
         private void TaskManagerClick(object sender, RoutedEventArgs e)
@@ -166,7 +166,6 @@ namespace BadMcen_Launcher
             {
                 TaskAndWidgetsFrame.Content = null;
             }
-            
         }
     }
 
@@ -175,4 +174,3 @@ namespace BadMcen_Launcher
         public static MainWindow Instance { get; private set; }
     }
 }
-

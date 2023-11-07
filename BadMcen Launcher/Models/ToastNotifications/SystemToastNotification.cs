@@ -10,15 +10,15 @@ namespace BadMcen_Launcher.Models.ToastNotifications
 {
     internal class SystemToastNotification
     {
-        public static void ErrorToast(string Subtitle, string ErrorTitle)
+        public static void InfoToast(string Title, string Subtitle)
         {
             var e = new ToastContentBuilder();
             e.AddArgument("action", "viewConversation");
             e.AddArgument("conversationId", 9813);
-            e.AddText(LanguageLoader.resourceLoader.GetString("Toast_ErrorToastTitle"));
+            e.AddText(Title);
             e.AddText(Subtitle);
-            e.AddText(LanguageLoader.resourceLoader.GetString("Toast_ErrorToastSubTitle") + ErrorTitle);
             e.Show();
         }
+        
     }
 }

@@ -39,11 +39,7 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
             Instance = this;
             setVersionPathdialog = SetVersionPathdialog;
             ReadList();
-
-
             ListViewIsOrIsNotEmpty();
-
-
         }
         private void ReadList()
         {
@@ -51,7 +47,7 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
             {
                 foreach (string item in SetVersionPathJson.ReadJson())
                 {
-                    SetVersionPathPage.Instance.SetVersionPathListView.Items.Add(item);
+                    SetVersionPathListView.Items.Add(item);
 
                 }
             }

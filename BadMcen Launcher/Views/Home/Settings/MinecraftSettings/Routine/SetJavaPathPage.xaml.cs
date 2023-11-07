@@ -1,10 +1,13 @@
 using BadMcen_Launcher.Models.CreateOrUse;
 using BadMcen_Launcher.Models.MinecraftLaunchCode;
+using BadMcen_Launcher.Models.ToastNotifications;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Documents;
 using MinecraftLaunch.Modules.Enum;
+using MinecraftLaunch.Modules.Installer;
 using MinecraftLaunch.Modules.Models.Launch;
+using MinecraftLaunch.Modules.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -31,8 +34,25 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
         public SetJavaPathPage(ContentDialog SetJavaPathdialog)
         {
             this.InitializeComponent();
+            Instance = this;
             setJavaPathdialog = SetJavaPathdialog;
+            ReadList();
             ListViewIsOrIsNotEmpty();
+
+        }
+        private void ReadList()
+        {
+            if (SetJavaPathJson.ReadJson() != null)
+            {
+                foreach (string item in SetJavaPathJson.ReadJson())
+                {
+
+                    JavaInfo javaInfo = JavaUtil.GetJavaInfo(item);
+                    SetJavaPathListView.Items.Add(new SetJavaBind($"Java{javaInfo.JavaVersion} {(javaInfo.Is64Bit ? "- 64bit" : "- 32bit")}", item));
+
+                }
+            }
+
         }
         private void ListViewIsOrIsNotEmpty()
         {
@@ -80,19 +100,18 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
                 StorageFolder ReturnFolder = await openPicker.PickSingleFolderAsync();
                 if (ReturnFolder != null)
                 {
+                    Java java = new Java();
+                    AppToastNotification.AppProgrssToast("Info", LanguageLoader.resourceLoader.GetString("SetJavaPathPage_InfoMessage01"), GetJavaComboBox.SelectedItem.ToString());
                     switch (GetJavaComboBox.SelectedItem)
                     {
                         case "OpenJDK 8":
-                            await Java.GetJava(JdkDownloadSource.JdkJavaNet, OpenJdkType.OpenJdk8, ReturnFolder.Path);
+                            await java.GetJava(ReturnFolder.Path, (await JavaInstaller.GetJavasByVersionAsync(JavaVersion.Java8).AsListAsync()).First(x => x.OsType.Contains("64")));
                             break;
-                        case "OpenJDK 11":
-                            await Java.GetJava(JdkDownloadSource.JdkJavaNet, OpenJdkType.OpenJdk11, ReturnFolder.Path);
+                        case "OpenJDK 16":
+                            await java.GetJava(ReturnFolder.Path, (await JavaInstaller.GetJavasByVersionAsync(JavaVersion.Java16).AsListAsync()).First(x => x.OsType.Contains("64")));
                             break;
                         case "OpenJDK 17":
-                            await Java.GetJava(JdkDownloadSource.JdkJavaNet, OpenJdkType.OpenJdk17, ReturnFolder.Path);
-                            break;
-                        case "OpenJDK 18":
-                            await Java.GetJava(JdkDownloadSource.JdkJavaNet, OpenJdkType.OpenJdk18, ReturnFolder.Path);
+                            await java.GetJava(ReturnFolder.Path, (await JavaInstaller.GetJavasByVersionAsync(JavaVersion.Java17).AsListAsync()).First(x => x.OsType.Contains("64")));
                             break;
                     }
                 }
@@ -123,14 +142,14 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
             var ReturnFile = await openPicker.PickSingleFileAsync();
             if (ReturnFile?.Name == "javaw.exe")
             {
-                if (SetJavaPathListView.Items.Any(Rf => (Rf as JavaView).JavaPath.Contains(ReturnFile.Path)))
+                if (SetJavaPathListView.Items.Any(Rf => (Rf as SetJavaBind).JavaPath.Contains(ReturnFile.Path)))
                 {
                     ErrorMessage(LanguageLoader.resourceLoader.GetString("SetJavaPathPage_ErrorMessage05"));
                 }
                 else
                 {
-                    JavaInfo javaInfo = MinecraftLaunch.Modules.Utils.JavaUtil.GetJavaInfo(ReturnFile.Path);
-                    SetJavaPathListView.Items.Add(new JavaView($"Java{javaInfo.JavaVersion} {(javaInfo.Is64Bit ? "- 64bit" : "- 32bit")}", ReturnFile.Path));
+                    JavaInfo javaInfo = JavaUtil.GetJavaInfo(ReturnFile.Path);
+                    SetJavaPathListView.Items.Add(new SetJavaBind($"Java{javaInfo.JavaVersion} {(javaInfo.Is64Bit ? "- 64bit" : "- 32bit")}", ReturnFile.Path));
                     //Close text
                     ListViewIsOrIsNotEmpty();
                     await SetJavaPathJson.WriteJson(ReturnFile.Path);
@@ -150,7 +169,7 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
             if (SetJavaPathListView.SelectedIndex != -1)
             {
                 //Delete from Json
-                await CreateOrUseFiles.SetJavaPathJson.DeleteJsonElement((SetJavaPathListView.SelectedItem as JavaView).JavaPath);
+                await CreateOrUseFiles.SetJavaPathJson.DeleteJsonElement((SetJavaPathListView.SelectedItem as SetJavaBind).JavaPath);
                 //Delete from ListView
                 SetJavaPathListView.Items.RemoveAt(SetJavaPathListView.SelectedIndex);
                 //Done button becomes disabled
@@ -177,9 +196,8 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
         private async void SearchJavaClick(object sender, RoutedEventArgs e)
         {
             //ReadJson and remove duplicates
-
-            List<JavaView> JavaList = SetJavaPathListView.Items
-                .OfType<JavaView>()
+            List<SetJavaBind> JavaList = SetJavaPathListView.Items
+                .OfType<SetJavaBind>()
                 .ToList() ?? new();
 
             IEnumerable<JavaInfo> javaList = await Task.Run(Java.SearchJava);
@@ -187,7 +205,7 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
             JavaList.AddRange(javaList.Select(x =>
             {
                 string name = $"Java{x.JavaVersion} {(x.Is64Bit ? "- 64bit" : "- 32bit")}";
-                return new JavaView(name, x.JavaPath);
+                return new SetJavaBind(name, x.JavaPath);
             }));
 
             //分组去重法
@@ -213,13 +231,12 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
 
         }
 
-
-        public class JavaView
+        public class SetJavaBind
         {
             public string JavaName { get; set; }
             public string JavaPath { get; set; }
 
-            public JavaView(string name, string path)
+            public SetJavaBind(string name, string path)
             {
                 JavaPath = path;
                 JavaName = name;
@@ -227,5 +244,9 @@ namespace BadMcen_Launcher.Views.Home.Settings.MinecraftSettings.Routine
         }
 
         
+    }
+    public partial class SetJavaPathPage
+    {
+        public static SetJavaPathPage Instance { get; private set; }
     }
 }
