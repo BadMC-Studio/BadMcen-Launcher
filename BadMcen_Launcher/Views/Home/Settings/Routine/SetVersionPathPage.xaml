@@ -1,0 +1,43 @@
+﻿<Page
+    x:Class="BadMcen_Launcher.Views.Home.Settings.Routine.SetVersionPathPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BadMcen_Launcher.Views.Home.Settings.Routine"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+  <Grid>
+    <FontIcon FontSize="30" x:Name="NullFontIcon" Opacity="0" Glyph="&#xE74D;" Foreground="{ThemeResource TextFillColorSecondaryBrush}">
+      <FontIcon.OpacityTransition>
+        <ScalarTransition/>
+      </FontIcon.OpacityTransition>
+    </FontIcon>
+    <TextBlock x:Uid="SetVersionPathPage_NotVersionPath" Text="这里什么都没有." x:Name="NullTextBlock" Opacity="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="140" Foreground="{ThemeResource TextFillColorSecondaryBrush}">
+      <TextBlock.OpacityTransition>
+        <ScalarTransition />
+      </TextBlock.OpacityTransition>
+    </TextBlock>
+    <!--.minecraftPathPicker-->
+    <Button HorizontalAlignment="Right" Height="40" Width="40" Margin="0,15,20,0" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Click="SetVersionPathPicker">
+      <FontIcon FontSize="16" Glyph="&#xe838;"/>
+    </Button>
+    <!--SearchVersion-->
+    <Button HorizontalAlignment="Right" Height="40" Width="40" Margin="0,15,60,0" VerticalAlignment="Top" Background="Transparent" BorderBrush="{x:Null}" BorderThickness="0">
+      <FontIcon FontSize="16" Glyph="&#xE721;"/>
+    </Button>
+    <!--Delete.minecraftPath-->
+    <Button HorizontalAlignment="Right" Height="40" Width="40" Margin="0,15,100,0" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Click="DeleteMinecraftPathClick">
+      <FontIcon FontSize="16" Glyph="&#xE74D;" Foreground="{ThemeResource SystemFillColorCriticalBrush}"/>
+    </Button>
+
+    <!--.minecraftPath-->
+    <ScrollViewer Margin="0,60,0,0" Height="300" Width="500">
+      <ListView x:Name="SetVersionPathListView" ItemClick="SetVersionPathListViewClick" x:FieldModifier="public" HorizontalAlignment="Stretch" IsItemClickEnabled="True"/>
+    </ScrollViewer>
+    <!--Info-->
+    <InfoBar x:Name="SetVersionPathMessage" x:FieldModifier="public" VerticalAlignment="Bottom" Margin="10,10" IsOpen="False" Severity="Error">
+    </InfoBar>
+  </Grid>
+</Page>

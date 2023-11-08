@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.Build.NoTargets/3.7.0">
+  <PropertyGroup>
+    <!-- NOTE: The TargetFramework is required by MSBuild but not used as this project is not built. -->
+    <TargetFramework>net7.0</TargetFramework>
+    <EnableDefaultItems>false</EnableDefaultItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="**\*" Exclude="obj\**;bin\**;*.csproj" />
+    <PackageReference Include="CommunityToolkit.WinUI.Controls.RangeSelector" />
+    <PackageReference Include="CommunityToolkit.WinUI.Controls.SettingsControls" />
+    <PackageReference Include="CommunityToolkit.WinUI.Controls.Sizers" />
+    <PackageReference Include="MinecraftLaunch" />
+    <PackageReference Include="MinecraftLaunch.Skin" />
+    <PackageReference Include="MinecraftOAuth" />
+    <PackageReference Include="System.Management" />
+    <None Update="AppHead.xaml.cs" DependentUpon="AppHead.xaml" />
+  </ItemGroup>
+</Project>

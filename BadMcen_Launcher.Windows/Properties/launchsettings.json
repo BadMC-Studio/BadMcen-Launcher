@@ -1,0 +1,10 @@
+{
+	"profiles": {
+		"BadMcen_Launcher.Windows (Unpackaged)": {
+			"commandName": "Project"
+		},
+		"BadMcen_Launcher.Windows (Package)": {
+			"commandName": "MsixPackage"
+		}
+	}
+}

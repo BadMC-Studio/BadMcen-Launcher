@@ -1,0 +1,15 @@
+﻿<ContentDialog
+    x:Class="BadMcen_Launcher.Views.Home.Settings.Routine.RoutineDialog.SetJavaPathDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BadMcen_Launcher.Views.Home.Settings.Routine.RoutineDialog"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Uid="RoutinePage_ExpanderSetVersionPathDialog"
+    Style="{ThemeResource DefaultContentDialogStyle}"
+    IsPrimaryButtonEnabled="False"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
+	<Grid>
+      
+	</Grid>
+</ContentDialog>

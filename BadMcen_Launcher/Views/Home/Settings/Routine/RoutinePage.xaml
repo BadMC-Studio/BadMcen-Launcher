@@ -1,0 +1,116 @@
+﻿<Page
+    x:Class="BadMcen_Launcher.Views.Home.Settings.Routine.RoutinePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BadMcen_Launcher.Views.Home.Settings.Routine"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:CommunityToolkit.WinUI.Controls" 
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="80"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+    <!--Header-->
+    <FontIcon HorizontalAlignment="Left" Margin="30,20" Glyph="&#xF133;" FontSize="25"/>
+    <TextBlock Grid.Row="0" x:Uid="RoutinePage_Header" HorizontalAlignment="Left" FontSize="25" Margin="70,20" />
+    <!--Settings-->
+    <ScrollViewer Grid.Row="1" Margin="10,10,0,0">
+      <StackPanel>
+        <!--SetVersionPath-->
+        <controls:SettingsExpander Grid.Row="1" Margin="20,5" x:Uid="RoutinePage_ExpanderSetVersionSettingsHeader">
+          <controls:SettingsExpander.HeaderIcon>
+            <FontIcon Glyph="&#xE8b7;" />
+          </controls:SettingsExpander.HeaderIcon>
+          <controls:SettingsExpander.Items>
+            <controls:SettingsCard x:Uid="RoutinePage_ExpanderSetVersionPathHeader">
+              <Grid>
+                <!--SetVersionPathButton-->
+                <HyperlinkButton Height="30" Width="300" Margin="0, 0, 50, 0" BorderThickness="0" x:Name="SetVersionPath" Click="SetVersionPathClick"/>
+                <!--SetVersionPathHelpButton-->
+                <Button HorizontalAlignment="Right" BorderBrush="Transparent" Background="Transparent" BorderThickness="0" x:Name="SetVersionPathHelpButton" Click="SetVersionPathHelpClick">
+                  <FontIcon Glyph="&#xE9CE;" FontSize="20" Foreground="{ThemeResource AccentFillColorSecondaryBrush}"/>
+                </Button>
+                <!--SetVersionPathHelpTeachingTip-->
+                <TeachingTip x:Name="SetVersionPathHelp" Target="{x:Bind SetVersionPathHelpButton}" x:Uid="RoutinePage_ExpanderSetVersionPathHelp01">
+                  <TeachingTip.Content>
+                    <HyperlinkButton x:Uid="RoutinePage_ExpanderHelpLink"/>
+                  </TeachingTip.Content>
+                </TeachingTip>
+              </Grid>
+            </controls:SettingsCard>
+            <!--VersionIsolation-->
+            <controls:SettingsCard x:Uid="RoutinePage_ExpanderVersionIsolationHeader">
+              <Grid>
+                <!--VersionIsolationToggleSwitch-->
+                <ToggleSwitch Margin="50,0" x:Name="VersionIsolationToggleSwitch" x:Uid="RoutinePage_ExpanderVersionIsolationToggleSwitch" Toggled="VersionIsolationToggleSwitch_Toggled"/>
+                <!--VersionIsolationHelpButton-->
+                <Button HorizontalAlignment="Right" BorderBrush="Transparent" Background="Transparent" Click="VersionIsolationHelpClick" x:Name="VersionIsolationHelpButton" BorderThickness="0">
+                  <FontIcon Glyph="&#xE9CE;" FontSize="20" Foreground="{ThemeResource AccentFillColorSecondaryBrush}"/>
+                </Button>
+                <!--VersionIsolationHelpTeachingTip-->
+                <TeachingTip x:Name="VersionIsolationHelpTeachingTip" Target="{x:Bind VersionIsolationHelpButton}" x:Uid="RoutinePage_ExpanderVersionIsolationHelp01">
+                  <TeachingTip.Content>
+                    <HyperlinkButton NavigateUri="https://www.zhihu.com/question/529802349" x:Uid="RoutinePage_ExpanderHelpLink"/>
+                  </TeachingTip.Content>
+                </TeachingTip>
+              </Grid>
+            </controls:SettingsCard>
+          </controls:SettingsExpander.Items>
+        </controls:SettingsExpander>
+        <!--Java-->
+        <controls:SettingsExpander Grid.Row="1" Margin="20,5" x:Uid="RoutinePage_ExpanderSetJavaSettingsHeader">
+          <controls:SettingsExpander.HeaderIcon>
+            <FontIcon Glyph="&#xECAA;" />
+          </controls:SettingsExpander.HeaderIcon>
+          <controls:SettingsExpander.Items>
+            <controls:SettingsCard x:Uid="RoutinePage_ExpanderSetJavaPathHeader">
+              <Grid>
+                <!--SetJavaPathButton-->
+                <HyperlinkButton Height="30" Width="300" Margin="0,0,50,0" BorderThickness="0" x:FieldModifier="public" x:Name="SetJavaPath" Click="SetJavaPathClick"/>
+                <!--SetJavaPathHelpButton-->
+                <Button HorizontalAlignment="Right" BorderBrush="Transparent" Background="Transparent" Click="SetJavaPathHelpClick" x:Name="SetJavaPathHelpButton" BorderThickness="0">
+                  <FontIcon Glyph="&#xE9CE;" FontSize="20" Foreground="{ThemeResource AccentFillColorSecondaryBrush}"/>
+                </Button>
+                <!--SetJavaPathHelpTeachingTip-->
+                <TeachingTip x:Name="SetJavaPathHelpTeachingTip" Target="{x:Bind SetJavaPathHelpButton}" x:Uid="RoutinePage_ExpanderSetJavaPathHelp01">
+                  <TeachingTip.Content>
+                    <HyperlinkButton x:Uid="RoutinePage_ExpanderHelpLink"/>
+                  </TeachingTip.Content>
+                </TeachingTip>
+              </Grid>
+            </controls:SettingsCard>
+            <!--JVM Memory-->
+            <controls:SettingsCard x:Uid="RoutinePage_ExpanderSetJVMMemoryHeader">
+              <Grid>
+                <StackPanel Spacing="10">
+                  <StackPanel Orientation="Horizontal" Width="300" Height="10" Background="{ThemeResource ControlFillColorSecondaryBrush}" Margin="0,20,50,0" >
+                    <Border Background="{ThemeResource AccentFillColorDisabledBrush}" x:Name="SystemMemory"/>
+                    <Border Background="{ThemeResource AccentFillColorSecondaryBrush}" x:Name="MCMemory"/>
+                  </StackPanel>
+
+                  <StackPanel Orientation="Horizontal" Spacing="10">
+
+                  </StackPanel>
+                  <controls:RangeSelector x:Name="SetJVMMemorySelector" Width="300" StepFrequency="64" Minimum="0" Maximum="{Binding MaxJVMMemory}" Margin="0,0,50,0" ThumbDragCompleted="SetJVMMemory_OnDragCompleted"/>
+                </StackPanel>
+                <Button HorizontalAlignment="Right" VerticalAlignment="Center" BorderBrush="Transparent" Background="Transparent" Click="SetJVMMemoryHelpClick" x:Name="SetJVMMemoryHelpButton" BorderThickness="0">
+                  <FontIcon Glyph="&#xE9CE;" FontSize="20" Foreground="{ThemeResource AccentFillColorSecondaryBrush}"/>
+                </Button>
+                <TeachingTip x:Name="SetJVMMemoryHelpTeachingTip" Target="{x:Bind SetJVMMemoryHelpButton}" x:Uid="RoutinePage_ExpanderSetJVMMemoryHelp01">
+                  <TeachingTip.Content>
+                    <HyperlinkButton x:Uid="RoutinePage_ExpanderHelpLink"/>
+                  </TeachingTip.Content>
+                </TeachingTip>
+              </Grid>
+
+            </controls:SettingsCard>
+          </controls:SettingsExpander.Items>
+        </controls:SettingsExpander>
+      </StackPanel>
+    </ScrollViewer>
+  </Grid>
+</Page>

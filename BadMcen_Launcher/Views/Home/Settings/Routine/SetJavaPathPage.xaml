@@ -1,0 +1,72 @@
+﻿<Page
+    x:Class="BadMcen_Launcher.Views.Home.Settings.Routine.SetJavaPathPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BadMcen_Launcher.Views.Home.Settings.Routine"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+  <Grid>
+    <FontIcon FontSize="30" x:Name="NullFontIcon" Opacity="0" Glyph="&#xE74D;" Foreground="{ThemeResource TextFillColorSecondaryBrush}">
+      <FontIcon.OpacityTransition>
+        <ScalarTransition/>
+      </FontIcon.OpacityTransition>
+    </FontIcon>
+    <TextBlock x:Uid="SetVersionPathPage_NotJavaPath"  x:Name="NullTextBlock" Opacity="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="140" Foreground="{ThemeResource TextFillColorSecondaryBrush}">
+      <TextBlock.OpacityTransition>
+        <ScalarTransition />
+      </TextBlock.OpacityTransition>
+    </TextBlock>
+    <!--JavaPathPicker-->
+    <Button HorizontalAlignment="Right" Height="40" Width="40" Margin="0,15,20,0" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Click="SetJavaPathPicker">
+      <FontIcon FontSize="16" Glyph="&#xe838;"/>
+    </Button>
+    <!--DownloadJava-->
+    <Button HorizontalAlignment="Right" Height="40" Width="40" Margin="0,15,140,0" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent" BorderThickness="0">
+      <FontIcon FontSize="16" Glyph="&#xE896;"/>
+      <Button.Flyout>
+        <Flyout>
+          <StackPanel Spacing="10" HorizontalAlignment="Center">
+            <TextBlock Style="{ThemeResource BaseTextBlockStyle}" x:Uid="RoutinePage_ExpanderSetVersionPath04" />
+            <ComboBox HorizontalAlignment="Stretch" Margin="20, 0, 20, 0" x:Name="GetJavaComboBox" Text="123456789">
+              <x:String>OpenJDK 8</x:String>
+              <x:String>OpenJDK 16</x:String>
+              <x:String>OpenJDK 17</x:String>
+            </ComboBox>
+            <StackPanel Orientation="Horizontal" Spacing="10">
+              <HyperlinkButton x:Uid="RoutinePage_ExpanderSetVersionPath05"/>
+              <Button Style="{StaticResource AccentButtonStyle}" HorizontalAlignment="Right" x:Uid="RoutinePage_ExpanderSetVersionPath06" Click="GetJavaClick"/>
+            </StackPanel>
+          </StackPanel>
+        </Flyout>
+      </Button.Flyout>
+
+    </Button>
+    <!--SearchJava-->
+    <Button HorizontalAlignment="Right" Height="40" Width="40" Margin="0,15,60,0" VerticalAlignment="Top" Background="Transparent" BorderBrush="{x:Null}" BorderThickness="0" Click="SearchJavaClick">
+      <FontIcon FontSize="16" Glyph="&#xE721;"/>
+    </Button>
+    <!--DeleteJavaPath-->
+    <Button HorizontalAlignment="Right" Height="40" Width="40" Margin="0,15,100,0" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Click="DeleteJavaPathClick">
+      <FontIcon FontSize="16" Glyph="&#xE74D;" Foreground="{ThemeResource SystemFillColorCriticalBrush}"/>
+    </Button>
+
+    <!--JavaPath-->
+    <ScrollViewer Margin="0,60,0,0" Height="300" Width="500">
+      <ListView x:Name="SetJavaPathListView" ItemClick="SetJavaPathListViewClick" x:FieldModifier="public" HorizontalAlignment="Stretch" IsItemClickEnabled="True">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <StackPanel Spacing="5" Height="60" VerticalAlignment="Center">
+              <TextBlock Text="{Binding JavaName}" FontWeight="Bold" FontSize="15" Margin="0, 5, 0, 0"/>
+              <TextBlock Text="{Binding JavaPath}"/>
+            </StackPanel>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </ScrollViewer>
+    <!--Info-->
+    <InfoBar x:Name="SetJavaPathMessage" x:FieldModifier="public" VerticalAlignment="Bottom" Margin="10,10" IsOpen="False" Severity="Error"/>
+  </Grid>
+</Page>

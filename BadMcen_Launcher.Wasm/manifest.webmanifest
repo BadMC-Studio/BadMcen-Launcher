@@ -1,0 +1,10 @@
+{
+  "background_color": "#ffffff",
+  "description": "BadMcen_Launcher",
+  "display": "standalone",
+  "name": "BadMcen_Launcher",
+  "short_name": "BadMcen_Launcher",
+  "start_url": "/index.html",
+  "theme_color": "#ffffff",
+  "scope": "/"
+}

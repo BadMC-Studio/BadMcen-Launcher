@@ -1,0 +1,39 @@
+﻿<UserControl
+    x:Class="BadMcen_Launcher.Controls.AppToast.InfoToast"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BadMcen_Launcher.Controls.AppToast"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+  <Grid Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}" HorizontalAlignment="Stretch" Width="303" CornerRadius="5" x:Name="GridShadow">
+    <Grid.Shadow>
+      <ThemeShadow />
+    </Grid.Shadow>
+    <Grid.Resources>
+      <Storyboard x:Name="ToastStoryboard">
+        <DoubleAnimation Storyboard.TargetName="ToastTranslation" Storyboard.TargetProperty="X" Duration="0:0:0.3">
+          <DoubleAnimation.EasingFunction>
+            <ExponentialEase Exponent="7" EasingMode="EaseOut"/>
+          </DoubleAnimation.EasingFunction>
+        </DoubleAnimation>
+      </Storyboard>
+    </Grid.Resources>
+    <Grid.RenderTransform>
+      <TranslateTransform x:Name="ToastTranslation"/>
+    </Grid.RenderTransform>
+    <Button HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10" Click="CloseToastClick" BorderThickness="0" Background="Transparent">
+      <FontIcon Glyph="&#xE8BB;" FontSize="10"/>
+    </Button>
+    <StackPanel>
+      <StackPanel Orientation="Horizontal" Margin="10, 20, 10, 0" HorizontalAlignment="Left" VerticalAlignment="Top" >
+        <FontIcon Glyph="&#xEB90;" FontSize="20" Margin="10" x:Name="ToastIcon"/>
+        <TextBlock FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="ToastTitle"/>
+      </StackPanel>
+      <TextBlock Margin="40, 0, 40, 10" FontSize="15" x:Name="ToastSubTitle" TextWrapping="Wrap"/>
+    </StackPanel>
+  </Grid>
+</UserControl>
